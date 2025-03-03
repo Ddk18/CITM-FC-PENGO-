@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:src\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\dependencies\\raylib\\include\\raylib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3977A628-DA9D-4402-8F7A-65D0FDE48107}|Vikings.vcxproj|solutionrelative:dependencies\\raylib\\include\\raylib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -18,8 +30,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ResourceManager.h",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\ResourceManager.h",
+              "RelativeDocumentMoniker": "src\\ResourceManager.h",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\ResourceManager.h",
+              "RelativeToolTip": "src\\ResourceManager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-03T08:18:33.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h",
+              "RelativeDocumentMoniker": "src\\Game.h",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h",
+              "RelativeToolTip": "src\\Game.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-03T08:18:31.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Globals.h",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Globals.h",
+              "RelativeDocumentMoniker": "src\\Globals.h",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Globals.h",
+              "RelativeToolTip": "src\\Globals.h",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAABIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-03T08:14:25.634Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,14 +79,14 @@
               "RelativeDocumentMoniker": "src\\Game.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp",
               "RelativeToolTip": "src\\Game.cpp",
-              "ViewState": "AQIAACUAAAAAAAAAAAAswDQAAAARAAAA",
+              "ViewState": "AQIAADEAAAAAAAAAAAAcwEMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-03T07:45:39.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "raylib.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\dependencies\\raylib\\include\\raylib.h",
               "RelativeDocumentMoniker": "dependencies\\raylib\\include\\raylib.h",

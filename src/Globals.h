@@ -15,8 +15,8 @@ enum class AppStatus { OK = 0, ERROR, QUIT };
 void log(const char file[], int line, const char* text, ...);
 
 //Window size
-#define WINDOW_WIDTH    400
-#define WINDOW_HEIGHT   300
+#define WINDOW_WIDTH    336
+#define WINDOW_HEIGHT   432
 
 //Game constants
 #define MARGIN_GUI_Y	28

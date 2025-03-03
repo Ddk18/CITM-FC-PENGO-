@@ -7,7 +7,8 @@ Game::Game()
 {
     state = GameState::MAIN_MENU;
     scene = nullptr;
-    img_menu = nullptr;
+    img_menu_up = nullptr;
+    img_menu_down = nullptr;
 
     target = {};
     src = {};
@@ -29,7 +30,7 @@ AppStatus Game::Initialise(float scale)
     h = WINDOW_HEIGHT * scale;
 
     //Initialise window
-    InitWindow((int)w, (int)h, "Vikings");
+    InitWindow((int)w, (int)h, "Pengo");
 
     //Render texture initialisation, used to hold the rendering result so we can easily resize it
     target = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -60,12 +61,21 @@ AppStatus Game::LoadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
     
-    if (data.LoadTexture(Resource::IMG_MENU, "images/miscelanios/Logo.png") != AppStatus::OK)
+    if (data.LoadTexture(Resource::IMG_MENU_UP, "images/pantallas/1.png") != AppStatus::OK)
     {
-
         return AppStatus::ERROR;
     }
-    img_menu = data.GetTexture(Resource::IMG_MENU);
+
+    if (data.LoadTexture(Resource::IMG_MENU_DOWN, "images/pantallas/down.png") != AppStatus::OK)
+    {
+        return AppStatus::ERROR;
+    }
+
+    
+ 
+    img_menu_up = data.GetTexture(Resource::IMG_MENU_UP);
+    img_menu_down = data.GetTexture(Resource::IMG_MENU_DOWN);
+
     
     return AppStatus::OK;
 }
@@ -131,7 +141,8 @@ void Game::Render()
     switch (state)
     {
         case GameState::MAIN_MENU:
-            DrawTexture(*img_menu, 0, 0, WHITE);
+            DrawTexture(*img_menu_up, 0, 0, WHITE);
+            DrawTexture(*img_menu_down, 0, 104, WHITE);
             break;
 
         case GameState::PLAYING:
@@ -154,7 +165,8 @@ void Game::Cleanup()
 void Game::UnloadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
-    data.ReleaseTexture(Resource::IMG_MENU);
+    data.ReleaseTexture(Resource::IMG_MENU_UP);
+    data.ReleaseTexture(Resource::IMG_MENU_DOWN);
 
     UnloadRenderTexture(target);
 }
