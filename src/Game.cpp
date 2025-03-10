@@ -50,10 +50,14 @@ AppStatus Game::Initialise(float scale)
         return AppStatus::ERROR;
     }
 
+    int framesCounter = 0;
+    int framesSpeed = 8;            // Number of spritesheet frames shown by second
+    SetTargetFPS(60);
     //Set the target frame rate for the application
     SetTargetFPS(60);
     //Disable the escape key to quit functionality
     SetExitKey(0);
+  
 
     return AppStatus::OK;
 }
@@ -70,9 +74,10 @@ AppStatus Game::LoadResources()
     {
         return AppStatus::ERROR;
     }
+    sheet = LoadTexture("resources/spritesheet.png");
+    Vector2 position = { 350.0f, 280.0f };
+    Rectangle frameRec = { 0.0f, 0.0f, (float)sheet.width / 16, (float)sheet.height };
 
-    
- 
     img_menu_up = data.GetTexture(Resource::IMG_MENU_UP);
     img_menu_down = data.GetTexture(Resource::IMG_MENU_DOWN);
 
@@ -106,31 +111,65 @@ AppStatus Game::Update()
     //Check if user attempts to close the window, either by clicking the close button or by pressing Alt+F4
     if(WindowShouldClose()) return AppStatus::QUIT;
 
+    static float frameTime = 0.0f;
+    static int frameIndex = 0;
+    const int totalFrames = 16;
+    const float frameSpeed = 2;
+
     switch (state)
     {
-        case GameState::MAIN_MENU: 
-            if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
-            if (IsKeyPressed(KEY_SPACE))
-            {
-                if(BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
-                state = GameState::PLAYING;
-            }
-            break;
+    case GameState::MAIN_MENU: {
 
-        case GameState::PLAYING:  
-            if (IsKeyPressed(KEY_ESCAPE))
-            {
-                FinishPlay();
-                state = GameState::MAIN_MENU;
-            }
-            else
-            {
-                //Game logic
-                scene->Update();
-            }
-            break;
+
+            Vector2 position = { 350.0f, 280.0f };
+
+            frameTime += GetFrameTime();
+                if (frameTime >= frameSpeed) {
+                    frameTime = 0.0f;
+                    frameIndex = (frameIndex + 1) % totalFrames;
+                }
+
+                // Actualizar frameRec con el frame actual
+                Rectangle frameRec = {
+                    frameIndex * (float)sheet.width / totalFrames,
+                    0.0f,
+                    (float)sheet.width / totalFrames,
+                    (float)sheet.height
+                };
+
+                // Dibujar
+                BeginDrawing();
+
+                DrawTexture(sheet, 15, 40, WHITE);
+                DrawRectangleLines(15, 40, sheet.width, sheet.height, LIME);
+                DrawTextureRec(sheet, frameRec, position, WHITE); // Dibujar solo el frame actual
+                DrawRectangleLines(15 + (int)frameRec.x, 40 + (int)frameRec.y, (int)frameRec.width, (int)frameRec.height, RED);
+
+                EndDrawing();
+
+                if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT;
+                if (IsKeyPressed(KEY_SPACE))
+                {
+                    if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
+                    state = GameState::PLAYING;
+                }
+                break;
+        }
+    case GameState::PLAYING:{
+                if (IsKeyPressed(KEY_ESCAPE))
+                {
+                    FinishPlay();
+                    state = GameState::MAIN_MENU;
+                }
+                else
+                {
+                    //Game logic
+                    scene->Update();
+                }
+                break;
+        }
+        return AppStatus::OK;
     }
-    return AppStatus::OK;
 }
 void Game::Render()
 {
@@ -142,7 +181,7 @@ void Game::Render()
     {
         case GameState::MAIN_MENU:
             DrawTexture(*img_menu_up, 0, 0, WHITE);
-            DrawTexture(*img_menu_down, 0, 104, WHITE);
+            DrawTexture(*img_menu_down, 0, 156, WHITE);
             break;
 
         case GameState::PLAYING:
