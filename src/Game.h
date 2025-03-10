@@ -27,6 +27,11 @@ private:
     const Texture2D* img_menu_up;
     const Texture2D *img_menu_down;
     Texture2D sheet; 
+    Rectangle frameRec;
+
+    int frameIndex;
+    float frameTime;
+
 
     //To work with original game units and then scale the result
     RenderTexture2D target;
