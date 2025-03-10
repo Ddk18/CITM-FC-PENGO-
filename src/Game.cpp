@@ -68,7 +68,7 @@ AppStatus Game::LoadResources()
 {
     ResourceManager& data = ResourceManager::Instance();
     
-    if (data.LoadTexture(Resource::IMG_MENU_UP, "images/pantallas/spritesheet.png") != AppStatus::OK)
+    if (data.LoadTexture(Resource::IMG_MENU_UP, "images/pantallas/1.png") != AppStatus::OK)
     {
         return AppStatus::ERROR;
     }
