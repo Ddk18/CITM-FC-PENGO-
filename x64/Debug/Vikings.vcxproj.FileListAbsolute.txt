@@ -1,3 +1,1 @@
-C:\Users\enzoam\Downloads\p7-Vikings\Vikings\x64\Debug\Vikings.exe
 C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
-C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
