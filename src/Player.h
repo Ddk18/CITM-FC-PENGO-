@@ -35,7 +35,7 @@ enum class State { IDLE, WALKING, PUSHING, FALLING, CLIMBING, DEAD };
 
 //Rendering states
 enum class PlayerAnim {
-	IDLE_LEFT, IDLE_RIGHT,
+	IDLE_LEFT, IDLE_RIGHT, IDLE_UP, IDLE_DOWN,
 	WALKING_LEFT, WALKING_RIGHT,WALKING_DOWN, WALKING_UP,
 	PUSHING_LEFT, PUSHING_RIGHT, PUSHING_DOWN, PUSHING_UP,
 	LEVITATING_LEFT, LEVITATING_RIGHT,
@@ -79,8 +79,8 @@ private:
 	void Stop();
 	void StartWalkingLeft();
 	void StartWalkingRight();
-	void StartFalling();
-	void StartJumping();
+	void StartWalkingUp();
+	void StartWalkingDown();
 	void StartClimbingUp();
 	void StartClimbingDown();
 	void ChangeAnimRight();

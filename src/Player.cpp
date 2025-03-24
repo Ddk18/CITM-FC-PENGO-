@@ -40,10 +40,13 @@ AppStatus Player::Initialise()
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
 	
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 0, 0, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 8*n, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { n, 0, n, n });
-
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 4*n, 0, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_UP, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_UP, { 6*n, 0, n, n });
+	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_DOWN, ANIM_DELAY);
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_DOWN, { n, 0, n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (i = 0; i < 2; ++i)
@@ -171,20 +174,18 @@ void Player::StartWalkingRight()
 	look = Look::RIGHT;
 	SetAnimation((int)PlayerAnim::WALKING_RIGHT);
 }
-void Player::StartFalling()
+void Player::StartWalkingDown()
 {
-	dir.y = PLAYER_SPEED;
-	state = State::FALLING;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::FALLING_RIGHT);
-	else					SetAnimation((int)PlayerAnim::FALLING_LEFT);
+	state = State::WALKING;
+	look = Look::DOWN;
+	SetAnimation((int)PlayerAnim::WALKING_DOWN);
 }
-void Player::StartJumping()
+void Player::StartWalkingUp()
 {
-	dir.y = -PLAYER_JUMP_FORCE;
-	state = State::JUMPING;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::JUMPING_RIGHT);
-	else					SetAnimation((int)PlayerAnim::JUMPING_LEFT);
-	jump_delay = PLAYER_JUMP_DELAY;
+	
+	state = State::WALKING;
+	look = Look::UP;
+	SetAnimation((int)PlayerAnim::WALKING_UP);
 }
 void Player::StartClimbingUp()
 {
@@ -207,7 +208,7 @@ void Player::ChangeAnimRight()
 	{
 		case State::IDLE:	 SetAnimation((int)PlayerAnim::IDLE_RIGHT);    break; 
 		case State::WALKING: SetAnimation((int)PlayerAnim::WALKING_RIGHT); break;
-		case State::JUMPING: SetAnimation((int)PlayerAnim::JUMPING_RIGHT); break;
+		case State::PUSHING: SetAnimation((int)PlayerAnim::PUSHING_RIGHT); break;
 		case State::FALLING: SetAnimation((int)PlayerAnim::FALLING_RIGHT); break;
 	}
 }
@@ -218,7 +219,7 @@ void Player::ChangeAnimLeft()
 	{
 		case State::IDLE:	 SetAnimation((int)PlayerAnim::IDLE_LEFT);    break;
 		case State::WALKING: SetAnimation((int)PlayerAnim::WALKING_LEFT); break;
-		case State::JUMPING: SetAnimation((int)PlayerAnim::JUMPING_LEFT); break;
+		case State::PUSHING: SetAnimation((int)PlayerAnim::PUSHING_LEFT); break;
 		case State::FALLING: SetAnimation((int)PlayerAnim::FALLING_LEFT); break;
 	}
 }
@@ -327,63 +328,7 @@ void Player::MoveY()
 		}
 	}
 }
-void Player::LogicJumping()
-{
-	AABB box, prev_box;
-	int prev_y;
 
-	jump_delay--;
-	if (jump_delay == 0)
-	{
-		prev_y = pos.y;
-		prev_box = GetHitbox();
-
-		pos.y += dir.y;
-		dir.y += GRAVITY_FORCE;
-		jump_delay = PLAYER_JUMP_DELAY;
-
-		//Is the jump finished?
-		if (dir.y > PLAYER_JUMP_FORCE)
-		{
-			dir.y = PLAYER_SPEED;
-			StartFalling();
-		}
-		else
-		{
-			//Jumping is represented with 3 different states
-			if (IsAscending())
-			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::JUMPING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::JUMPING_LEFT);
-			}
-			else if (IsLevitating())
-			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::LEVITATING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::LEVITATING_LEFT);
-			}
-			else if (IsDescending())
-			{
-				if (IsLookingRight())	SetAnimation((int)PlayerAnim::FALLING_RIGHT);
-				else					SetAnimation((int)PlayerAnim::FALLING_LEFT);
-			}
-		}
-		//We check ground collision when jumping down
-		if (dir.y >= 0)
-		{
-			box = GetHitbox();
-
-			//A ground collision occurs if we were not in a collision state previously.
-			//This prevents scenarios where, after levitating due to a previous jump, we found
-			//ourselves inside a tile, and the entity would otherwise be placed above the tile,
-			//crossing it.
-			if (!map->TestCollisionGround(prev_box, &prev_y) &&
-				map->TestCollisionGround(box, &pos.y))
-			{
-				Stop();
-			}
-		}
-	}
-}
 void Player::LogicClimbing()
 {
 	AABB box;

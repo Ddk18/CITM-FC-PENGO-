@@ -6,7 +6,7 @@
 #include "RenderComponent.h"
 #include "AABB.h"
 
-enum class Look { RIGHT, LEFT };
+enum class Look { RIGHT, LEFT,UP, DOWN };
 
 class Entity
 {
