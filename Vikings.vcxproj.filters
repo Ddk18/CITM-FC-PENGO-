@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\AABB.cpp" />
-    <ClCompile Include="src\Enemy.cpp" />
-    <ClCompile Include="src\EnemyManager.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Shot.cpp" />
     <ClCompile Include="src\ShotManager.cpp" />
@@ -40,13 +38,15 @@
     <ClCompile Include="src\ResourceManager.cpp">
       <Filter>Aplicación</Filter>
     </ClCompile>
+    <ClCompile Include="src\Enemy.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnemyManager.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dependencies\raylib\include\raylib.h" />
-    <ClInclude Include="dependencies\raylib\include\raymath.h" />
     <ClInclude Include="src\AABB.h" />
-    <ClInclude Include="src\Enemy.h" />
-    <ClInclude Include="src\EnemyManager.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\Shot.h" />
     <ClInclude Include="src\ShotManager.h" />
@@ -86,9 +86,18 @@
     <ClInclude Include="src\ResourceManager.h">
       <Filter>Aplicación</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="dependencies\raylib\lib\raylib.lib" />
+    <ClInclude Include="src\Enemy.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EnemyManager.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\raylib\include\raymath.h">
+      <Filter>Dependencias internas</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\raylib\include\raylib.h">
+      <Filter>Dependencias internas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entidades">
@@ -103,5 +112,13 @@
     <Filter Include="Aplicación">
       <UniqueIdentifier>{8d30e70a-aa13-410e-8ef5-3c9c779f0f22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dependencias internas">
+      <UniqueIdentifier>{a790cd2f-27a1-4711-b923-5636b4a0b8ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\raylib\lib\raylib.lib">
+      <Filter>Dependencias internas</Filter>
+    </Library>
   </ItemGroup>
 </Project>
