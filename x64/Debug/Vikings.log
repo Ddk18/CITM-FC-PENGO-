@@ -1,3 +1,23 @@
 ﻿  Player.cpp
-  Vikings.vcxproj -> C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
-          1 archivo(s) copiado(s).
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,15): error C2838: 'JUMPING': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,22): error C2065: 'JUMPING': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,22): error C2131: la expresión no se evaluó como una constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,22): message : se encontró una (sub)expresión no constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,54): error C2838: 'JUMPING_RIGHT': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,67): error C2065: 'JUMPING_RIGHT': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(188,1): error C2051: la expresión case no es una constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,15): error C2838: 'JUMPING': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,22): error C2065: 'JUMPING': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,22): error C2131: la expresión no se evaluó como una constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,22): message : se encontró una (sub)expresión no constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,54): error C2838: 'JUMPING_LEFT': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,66): error C2065: 'JUMPING_LEFT': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(199,1): error C2051: la expresión case no es una constante
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(262,22): error C2838: 'JUMPING': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(262,29): error C2065: 'JUMPING': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(334,57): error C2838: 'JUMPING_RIGHT': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(334,70): error C2065: 'JUMPING_RIGHT': identificador no declarado
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(335,44): error C2838: 'JUMPING_LEFT': nombre completo no válido en la declaración de miembro
+C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\src\Player.cpp(335,56): error C2065: 'JUMPING_LEFT': identificador no declarado
+  Scene.cpp
+  Generando código...

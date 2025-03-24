@@ -1,0 +1,5 @@
+tasks:
+-cambiar todo el sistema de salto y usar sus estructuras para añadir el empuje
+-Revisar los errores
+-Volver a comprobar que el codigo ha quedado pulido en las animaciones en player cpp
+-Empezar a mirar el uso del tileset

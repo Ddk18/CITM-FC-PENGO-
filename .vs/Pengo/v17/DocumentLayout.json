@@ -47,8 +47,7 @@
               "ViewState": "AQIAAJ0AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-24T08:06:32.023Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -58,7 +57,7 @@
               "RelativeDocumentMoniker": "src\\Player.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.cpp",
               "RelativeToolTip": "src\\Player.cpp",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAADkAAABGAAAA",
+              "ViewState": "AQIAADQAAAAAAAAAAADgv0cAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-24T08:01:05.84Z",
               "EditorCaption": ""
@@ -71,7 +70,7 @@
               "RelativeDocumentMoniker": "src\\Player.h",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h",
               "RelativeToolTip": "src\\Player.h",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAiwCUAAAAJAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAiwCcAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-24T08:00:28.748Z",
               "EditorCaption": ""
@@ -86,8 +85,7 @@
               "RelativeToolTip": "src\\Game.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-17T07:03:08.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:03:08.807Z"
             },
             {
               "$type": "Document",
