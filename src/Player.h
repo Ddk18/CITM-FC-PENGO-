@@ -2,6 +2,10 @@
 #include "Entity.h"
 #include "TileMap.h"
 
+
+
+
+
 //Representation model size: 32x32
 #define PLAYER_FRAME_SIZE		16
 
@@ -39,7 +43,6 @@ enum class PlayerAnim {
 	WALKING_LEFT, WALKING_RIGHT,WALKING_DOWN, WALKING_UP,
 	PUSHING_LEFT, PUSHING_RIGHT, PUSHING_DOWN, PUSHING_UP,
 	LEVITATING_LEFT, LEVITATING_RIGHT,
-	FALLING_LEFT, FALLING_RIGHT,
 	CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
 	SHOCK_LEFT, SHOCK_RIGHT,
 	TELEPORT_LEFT, TELEPORT_RIGHT,
@@ -66,6 +69,8 @@ public:
 private:
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
+	bool IsLookingDown() const;
+	bool IsLookingUp() const;
 
 	//Player mechanics
 	void MoveX();
@@ -85,6 +90,8 @@ private:
 	void StartClimbingDown();
 	void ChangeAnimRight();
 	void ChangeAnimLeft();
+	void ChangeAnimUp();
+	void ChangeAnimDown();
 
 	//Jump steps
 	bool IsAscending() const;
@@ -102,6 +109,8 @@ private:
 	//Reference to the TileMap object
 	//This class does not own the object, it only holds a reference to it
 	TileMap *map;
+
+	
 
 	int score;
 };
