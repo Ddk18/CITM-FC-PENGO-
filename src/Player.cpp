@@ -10,7 +10,6 @@ Player::Player(const Point& p, State s, Look view) :
 {
 	state = s;
 	look = view;
-	jump_delay = PLAYER_JUMP_DELAY;
 	map = nullptr;
 	score = 0;
 }
@@ -113,14 +112,6 @@ bool Player::IsLookingUp() const
 {
 	return look == Look::UP;
 }
-bool Player::IsInFirstHalfTile() const
-{
-	return pos.y % TILE_SIZE < TILE_SIZE / 2;
-}
-bool Player::IsInSecondHalfTile() const
-{
-	return pos.y % TILE_SIZE >= TILE_SIZE/2;
-}
 void Player::SetAnimation(int id)
 {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
@@ -131,15 +122,49 @@ PlayerAnim Player::GetAnimation()
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	return (PlayerAnim)sprite->GetAnimation();
 }
-void Player::Stop()
-{
-	dir = { 0,0 };
-	state = State::IDLE;
-	if (IsLookingRight())	SetAnimation((int)PlayerAnim::IDLE_RIGHT);
-	else if(IsLookingLeft())		SetAnimation((int)PlayerAnim::IDLE_LEFT);
-	else if(IsLookingUp())		SetAnimation((int)PlayerAnim::IDLE_UP);
-	else if	(IsLookingDown())		SetAnimation((int)PlayerAnim::IDLE_DOWN);
+
+
+void Player::FreezeAnimationFrame() {
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
+	int currentAnim = sprite->GetAnimation();
+
+	// Almacenar el delay original solo si no se ha guardado previamente
+	if (originalAnimationDelays.find(currentAnim) == originalAnimationDelays.end()) {
+		originalAnimationDelays[currentAnim] = sprite->GetAnimationDelay(currentAnim);
+	}
+
+	// Establecer un delay muy alto para "congelar" la animación
+	sprite->SetAnimationDelay(currentAnim, 20);
 }
+
+// Función para restaurar el delay original de la animación actual
+void Player::RestoreAnimationFrame() {
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
+	int currentAnim = sprite->GetAnimation();
+
+	if(state == State::IDLE) {
+
+
+	}
+}
+
+// Función Stop que congela la animación sin cambiar a la animación idle
+void Player::Stop() {
+	dir = { 0, 0 };
+	state = State::IDLE;
+	FreezeAnimationFrame();
+}
+
+// Ejemplo de función para reanudar el movimiento
+void Player::ResumeMovement() {
+	RestoreAnimationFrame();
+	// Aquí puedes definir la animación de movimiento que corresponda, por ejemplo:
+	SetAnimation((int)PlayerAnim::WALKING_RIGHT);
+	// Se deben actualizar posición, dirección, etc.
+}
+
+
+
 
 void Player::StartWalkingLeft()
 {
@@ -256,7 +281,7 @@ void Player::MoveX()
 		if (map->TestCollisionWallLeft(box))
 		{
 			pos.x = prev_x;
-			if (state == State::WALKING) Stop();
+			if (state == State::IDLE) Stop();
 		}
 	}
 	else if (IsKeyDown(KEY_RIGHT))
@@ -275,12 +300,12 @@ void Player::MoveX()
 		if (map->TestCollisionWallRight(box))
 		{
 			pos.x = prev_x;
-			if (state == State::WALKING) Stop();
+			if (state == State::IDLE) Stop();
 		}
 	}
 	else
 	{
-		if (state == State::WALKING) Stop();
+		if (state == State::IDLE) Stop();
 	}
 }
 void Player::MoveY()
@@ -305,7 +330,7 @@ void Player::MoveY()
 		if (map->TestCollisionWallLeft(box))
 		{
 			pos.y = prev_y;
-			if (state == State::WALKING) Stop();
+			if (state == State::PUSHING) Stop();
 		}
 	}
 	else if (IsKeyDown(KEY_DOWN))
@@ -323,12 +348,12 @@ void Player::MoveY()
 		if (map->TestCollisionWallRight(box))
 		{
 			pos.y = prev_y;
-			if (state == State::WALKING) Stop();
+			if (state == State::IDLE) Stop();
 		}
 	}
 	else
 	{
-		if (state == State::WALKING) Stop();
+		if (state == State::IDLE) Stop();
 	}
 	if (map->TestCollisionGround(box, &pos.y))
 	{

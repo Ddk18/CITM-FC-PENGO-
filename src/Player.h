@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "TileMap.h"
-
+#include <unordered_map>
 
 
 
@@ -66,7 +66,13 @@ public:
 	void DrawDebug(const Color& col) const;
 	void Release();
 
+	void FreezeAnimationFrame();
+	void RestoreAnimationFrame();
+	void Stop();
+	void ResumeMovement();
+
 private:
+	
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
 	bool IsLookingDown() const;
@@ -75,13 +81,12 @@ private:
 	//Player mechanics
 	void MoveX();
 	void MoveY();
-	void LogicJumping();
-	void LogicClimbing();
+
 
 	//Animation management
+	std::unordered_map<int, int> originalAnimationDelays;
 	void SetAnimation(int id);
 	PlayerAnim GetAnimation();
-	void Stop();
 	void StartWalkingLeft();
 	void StartWalkingRight();
 	void StartWalkingUp();
@@ -93,18 +98,10 @@ private:
 	void ChangeAnimUp();
 	void ChangeAnimDown();
 
-	//Jump steps
-	bool IsAscending() const;
-	bool IsLevitating() const;
-	bool IsDescending() const;
 
-	//Ladder get in/out steps
-	bool IsInFirstHalfTile() const;
-	bool IsInSecondHalfTile() const;
 
 	State state;
 	Look look;
-	int jump_delay;
 
 	//Reference to the TileMap object
 	//This class does not own the object, it only holds a reference to it
