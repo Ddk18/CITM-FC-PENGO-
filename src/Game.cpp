@@ -9,13 +9,15 @@ Game::Game()
     scene = nullptr;
     img_menu_up = nullptr;
     img_menu_down = nullptr;
-
+  
     target = {};
     src = {};
     dst = {};
 
     frameIndex = 0;  // Inicializar animación
     frameTime = 0.0f;
+    frameRec = { 0.0f, 0.0f, 0.0f, 0.0f };
+    sheet = {};
 }
 Game::~Game()
 {
@@ -57,9 +59,7 @@ AppStatus Game::Initialise(float scale)
     int framesSpeed = 8;            // Number of spritesheet frames shown by second
     SetTargetFPS(60);
     //Set the target frame rate for the application
-    SetTargetFPS(60);
-    //Disable the escape key to quit functionality
-    SetExitKey(0);
+    
   
 
     return AppStatus::OK;
@@ -77,6 +77,7 @@ AppStatus Game::LoadResources()
     {
         return AppStatus::ERROR;
     }
+
     sheet = LoadTexture("images/pantallas/spritesheet.png");
     Vector2 position = { 350.0f, 280.0f };
     Rectangle frameRec = { 0.0f, 0.0f, (float)sheet.width / 16, (float)sheet.height };
@@ -113,57 +114,54 @@ void Game::FinishPlay()
             scene = nullptr;  // Asegurarse de que no apunte a un lugar inválido
         }
     
-    scene->Release();
-    delete scene;
-    scene = nullptr;
+    
 }
 AppStatus Game::Update()
 {
-    
-    if (WindowShouldClose()) return AppStatus::QUIT; //El altF4
+    if (WindowShouldClose()) return AppStatus::QUIT; // El alt+F4
 
     const int totalFrames = 16;
-    const float frameSpeed = 0.75f;  // VELOCIDAD DE LA ANIMACIÓN DEL MENÚ
+    const float frameSpeed = 0.75f;  // Velocidad de la animación del menú
 
-   switch (state)
-   {
-      case GameState::MAIN_MENU: {
-
-
-        frameTime += GetFrameTime();// esto es pa que pueda calcular el tiempo de anim
+    switch (state)
+    {
+    case GameState::MAIN_MENU: {
+        frameTime += GetFrameTime(); // Calcular el tiempo de animación
         if (frameTime >= frameSpeed) {
             frameTime = 0.0f;
             frameIndex = (frameIndex + 1) % totalFrames;
         }
 
+        if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT; // Salir
 
-        if (IsKeyPressed(KEY_ESCAPE)) return AppStatus::QUIT; // salir
-
-        if (IsKeyPressed(KEY_SPACE))//jugar
+        if (IsKeyPressed(KEY_SPACE)) // Jugar
         {
             if (BeginPlay() != AppStatus::OK) return AppStatus::ERROR;
             state = GameState::PLAYING;
         }
         break;
-       }
+    }
 
     case GameState::PLAYING: {
-        if (IsKeyPressed(KEY_ESCAPE)) // salir
+        if (IsKeyPressed(KEY_ESCAPE)) // Salir
         {
             FinishPlay();
             state = GameState::MAIN_MENU;
         }
         else
         {
-            
             scene->Update();
         }
         break;
     }
-       return AppStatus::OK;
+
+    default:
+        return AppStatus::ERROR; // Para manejar casos inesperados
     }
 
+    return AppStatus::OK;
 }
+
 void Game::Render()
 {
     //esto es por si no encuetra el archivo
