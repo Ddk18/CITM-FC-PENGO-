@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\Shot.cpp" />
+    <ClCompile Include="src\ShotManager.cpp" />
+    <ClCompile Include="src\Globals.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceManager.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnemyManager.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Snobee.cpp">
+      <Filter>Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AABB.cpp">
+      <Filter>Núcleo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Núcleo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Núcleo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap.cpp">
+      <Filter>Núcleo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StaticImage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Shot.h" />
+    <ClInclude Include="src\ShotManager.h" />
+    <ClInclude Include="src\Globals.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MemLeaks.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ResourceManager.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EnemyManager.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Snobee.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Point.h">
+      <Filter>Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AABB.h">
+      <Filter>Núcleo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Núcleo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.h">
+      <Filter>Núcleo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileMap.h">
+      <Filter>Núcleo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StaticImage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\raylib\include\raylib.h">
+      <Filter>Dependencias internas</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\raylib\include\raymath.h">
+      <Filter>Dependencias internas</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{b94e5dc4-ea38-44bf-bab5-029e7889c6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entidades">
+      <UniqueIdentifier>{a97a1f3e-7b45-4217-8a23-c148f72386dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Núcleo">
+      <UniqueIdentifier>{2f033183-b5e4-49bf-b7a9-ef919781ff84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{bc534a71-4d35-4b5a-9802-49a6af7045d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencias internas">
+      <UniqueIdentifier>{c4bcbf4f-9c22-48f5-acbc-364b568bc99c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\raylib\lib\raylib.lib">
+      <Filter>Dependencias internas</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
