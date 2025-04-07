@@ -1,10 +1,5 @@
 ﻿  EnemyManager.cpp
-  Game.cpp
-  Player.cpp
-  Scene.cpp
-  ShotManager.cpp
-  TileMap.cpp
-  main.cpp
+  Snobee.cpp
   Generando código...
   Vikings.vcxproj -> C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
           1 archivo(s) copiado(s).

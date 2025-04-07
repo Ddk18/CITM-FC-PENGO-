@@ -216,10 +216,10 @@ AppStatus Scene::LoadLevel(int stage)
 				}
 				else if (tile == Tile::SLIME)
 				{
-					pos.x += (SLIME_FRAME_SIZE-SLIME_PHYSICAL_WIDTH)/2;
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::SLIME);
+					pos.x += (SNOBEE_FRAME_SIZE- SNOBEE_PHYSICAL_WIDTH)/2;
+					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::SNOBEE);
 					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::SLIME, area);
+					enemies->Add(pos, EnemyType::SNOBEE, area);
 				}
 				else if (tile == Tile::TURRET_LEFT)
 				{

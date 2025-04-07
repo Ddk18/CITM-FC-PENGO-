@@ -2,10 +2,10 @@
 #include "Entity.h"
 
 //Representation model size: 32x32
-#define SLIME_FRAME_SIZE		32
+#define SNOBEE_FRAME_SIZE		32
 //Logical model size: 24x30
-#define SLIME_PHYSICAL_WIDTH	24
-#define SLIME_PHYSICAL_HEIGHT	30
+#define SNOBEE_PHYSICAL_WIDTH	24
+#define SNOBEE_PHYSICAL_HEIGHT	30
 
 //Representation model size: 32x32
 #define TURRET_FRAME_SIZE		32
@@ -13,7 +13,7 @@
 #define TURRET_PHYSICAL_WIDTH	32
 #define TURRET_PHYSICAL_HEIGHT	26
 
-enum class EnemyType { SLIME, TURRET };
+enum class EnemyType { SNOBEE, TURRET };
 
 class Enemy :  public Entity
 {
@@ -33,7 +33,7 @@ public:
 	virtual bool Update(const AABB& box) = 0;
 	
 	//Retrieve the position and direction of the shot to be thrown
-	virtual void GetShootingPosDir(Point* pos, Point* dir) const = 0;
+	
 
 protected:
 	//Return true if the given hitbox is within the visibility area and the enemy is facing it
