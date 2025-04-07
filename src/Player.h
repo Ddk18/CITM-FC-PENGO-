@@ -6,46 +6,25 @@
 
 
 
-//Representation model size: 32x32
+//tamaño del lado del sprite
 #define PLAYER_FRAME_SIZE		16
 
-//Logical model size: 12x28
-#define PLAYER_PHYSICAL_WIDTH	12
-#define PLAYER_PHYSICAL_HEIGHT	28
+//tamaño real del personaje ingame
+#define PLAYER_PHYSICAL_WIDTH	16
+#define PLAYER_PHYSICAL_HEIGHT	17
 
-//Horizontal speed and vertical speed while falling down
+//Horizontal and vertical speed 
 #define PLAYER_SPEED			2
 
-//Vertical speed while on a ladder
-#define PLAYER_LADDER_SPEED		1
-
-//Frame animation delay while on a ladder
-#define ANIM_LADDER_DELAY		(2*ANIM_DELAY)
-
-//When jumping, initial jump speed and maximum falling speed
-#define PLAYER_JUMP_FORCE		10
-
-//Frame delay for updating the jump velocity
-#define PLAYER_JUMP_DELAY		2
-
-//Player is levitating when abs(speed) <= this value
-#define PLAYER_LEVITATING_SPEED	4
-
-//Gravity affects jumping velocity when jump_delay is 0
-#define GRAVITY_FORCE			1
 
 //Logic states
-enum class State { IDLE, WALKING, PUSHING, FALLING, CLIMBING, DEAD };
+enum class State { IDLE, WALKING, PUSHING, DEAD };
 
 //Rendering states
 enum class PlayerAnim {
 	IDLE_LEFT, IDLE_RIGHT, IDLE_UP, IDLE_DOWN,
 	WALKING_LEFT, WALKING_RIGHT,WALKING_DOWN, WALKING_UP,
 	PUSHING_LEFT, PUSHING_RIGHT, PUSHING_DOWN, PUSHING_UP,
-	LEVITATING_LEFT, LEVITATING_RIGHT,
-	CLIMBING, CLIMBING_PRE_TOP, CLIMBING_TOP,
-	SHOCK_LEFT, SHOCK_RIGHT,
-	TELEPORT_LEFT, TELEPORT_RIGHT,
 	NUM_ANIMATIONS
 };
 
@@ -79,8 +58,7 @@ private:
 	bool IsLookingUp() const;
 
 	//Player mechanics
-	void MoveX();
-	void MoveY();
+	void Move();
 
 
 	//Animation management

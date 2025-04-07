@@ -39,13 +39,13 @@ AppStatus Player::Initialise()
 	sprite->SetNumberAnimations((int)PlayerAnim::NUM_ANIMATIONS);
 	
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_RIGHT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 8*n, 0, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_RIGHT, { 7*n, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_LEFT, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 4*n, 0, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_LEFT, { 3*n, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_UP, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_UP, { 6*n, 0, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_UP, { 5*n, 0, n, n });
 	sprite->SetAnimationDelay((int)PlayerAnim::IDLE_DOWN, ANIM_DELAY);
-	sprite->AddKeyFrame((int)PlayerAnim::IDLE_DOWN, { n, 0, n, n });
+	sprite->AddKeyFrame((int)PlayerAnim::IDLE_DOWN, { 0, 0, n, n });
 
 	sprite->SetAnimationDelay((int)PlayerAnim::WALKING_RIGHT, ANIM_DELAY);
 	for (i = 0; i < 2; ++i)
@@ -142,9 +142,9 @@ void Player::RestoreAnimationFrame() {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	int currentAnim = sprite->GetAnimation();
 
-	if(state == State::IDLE) {
-
-
+	// Restaurar el delay original si existe
+	if (originalAnimationDelays.find(currentAnim) != originalAnimationDelays.end()) {
+		sprite->SetAnimationDelay(currentAnim, originalAnimationDelays[currentAnim]);
 	}
 }
 
@@ -152,7 +152,22 @@ void Player::RestoreAnimationFrame() {
 void Player::Stop() {
 	dir = { 0, 0 };
 	state = State::IDLE;
-	FreezeAnimationFrame();
+
+	// En lugar de congelar la animación, cambiar a la animación IDLE correspondiente
+	switch (look) {
+	case Look::LEFT:
+		SetAnimation((int)PlayerAnim::IDLE_LEFT);
+		break;
+	case Look::RIGHT:
+		SetAnimation((int)PlayerAnim::IDLE_RIGHT);
+		break;
+	case Look::UP:
+		SetAnimation((int)PlayerAnim::IDLE_UP);
+		break;
+	case Look::DOWN:
+		SetAnimation((int)PlayerAnim::IDLE_DOWN);
+		break;
+	}
 }
 
 // Ejemplo de función para reanudar el movimiento
@@ -252,20 +267,20 @@ void Player::Update()
 {
 	//Player doesn't use the "Entity::Update() { pos += dir; }" default behaviour.
 	//Instead, uses an independent behaviour for each axis.
-	MoveX();
-	MoveY();
+	Move();
+	
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
 }
 
-void Player::MoveX()
+void Player::Move()
 {
 	AABB box;
 	int prev_x = pos.x;
+	int prev_y = pos.y;
 
-	
-
+	// Handle X movement
 	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
 	{
 		pos.x += -PLAYER_SPEED;
@@ -276,7 +291,6 @@ void Player::MoveX()
 			else if (IsLookingDown()) ChangeAnimLeft();
 			else if (IsLookingUp()) ChangeAnimLeft();
 		}
-
 		box = GetHitbox();
 		if (map->TestCollisionWallLeft(box))
 		{
@@ -287,7 +301,6 @@ void Player::MoveX()
 	else if (IsKeyDown(KEY_RIGHT))
 	{
 		pos.x += PLAYER_SPEED;
-
 		if (state == State::IDLE) StartWalkingRight();
 		else
 		{
@@ -295,7 +308,6 @@ void Player::MoveX()
 			else if (IsLookingDown()) ChangeAnimRight();
 			else if (IsLookingUp()) ChangeAnimRight();
 		}
-
 		box = GetHitbox();
 		if (map->TestCollisionWallRight(box))
 		{
@@ -303,18 +315,8 @@ void Player::MoveX()
 			if (state == State::IDLE) Stop();
 		}
 	}
-	else
-	{
-		if (state == State::IDLE) Stop();
-	}
-}
-void Player::MoveY()
-{
-	AABB box;
 
-	box = GetHitbox();
-	int prev_y = pos.y;
-
+	// Handle Y movement
 	if (IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
 		pos.y += -PLAYER_SPEED;
@@ -325,7 +327,6 @@ void Player::MoveY()
 			else if (IsLookingRight()) ChangeAnimUp();
 			else if (IsLookingDown()) ChangeAnimUp();
 		}
-
 		box = GetHitbox();
 		if (map->TestCollisionWallLeft(box))
 		{
@@ -343,7 +344,6 @@ void Player::MoveY()
 			else if (IsLookingRight()) ChangeAnimDown();
 			else if (IsLookingUp()) ChangeAnimDown();
 		}
-
 		box = GetHitbox();
 		if (map->TestCollisionWallRight(box))
 		{
@@ -351,14 +351,33 @@ void Player::MoveY()
 			if (state == State::IDLE) Stop();
 		}
 	}
-	else
-	{
-		if (state == State::IDLE) Stop();
-	}
+
+	// Check for ground collision
+	box = GetHitbox();
 	if (map->TestCollisionGround(box, &pos.y))
 	{
-		if (state == State::PUSHING) Stop();	
+		if (state == State::PUSHING) Stop();
+	}
 
+	// Handle the case when no movement keys are pressed
+	if (!IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
+	{
+		// Llamar a Stop solo si no estamos ya en estado IDLE o si la animación actual no es la correcta
+		Sprite* sprite = dynamic_cast<Sprite*>(render);
+		bool isIdleAnimation = false;
+
+		// Verificar si ya estamos en una animación IDLE correcta
+		if (look == Look::LEFT && sprite->GetAnimation() == (int)PlayerAnim::IDLE_LEFT)
+			isIdleAnimation = true;
+		else if (look == Look::RIGHT && sprite->GetAnimation() == (int)PlayerAnim::IDLE_RIGHT)
+			isIdleAnimation = true;
+		else if (look == Look::UP && sprite->GetAnimation() == (int)PlayerAnim::IDLE_UP)
+			isIdleAnimation = true;
+		else if (look == Look::DOWN && sprite->GetAnimation() == (int)PlayerAnim::IDLE_DOWN)
+			isIdleAnimation = true;
+
+		if (state != State::IDLE || !isIdleAnimation)
+			Stop();
 	}
 }
 
