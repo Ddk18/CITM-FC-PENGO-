@@ -1,5 +1,6 @@
 #include "Sprite.h"
 
+
 Sprite::Sprite(const Texture2D *texture)
 {
     img = texture;
@@ -119,4 +120,12 @@ void Sprite::Release()
     }
     //Clear the animations vector
     animations.clear();
+}
+
+int Sprite::GetAnimationDelay(int animID) const {
+    if (animID >= 0 && animID < animations.size())
+    {
+        return animations[animID].delay;
+    }
+    return 0;
 }

@@ -2,7 +2,7 @@
 
 #include "RenderComponent.h"
 #include <vector>
-
+#include <unordered_map>
 enum class AnimMode { AUTOMATIC, MANUAL };
 
 struct Animation
@@ -16,6 +16,8 @@ class Sprite : public RenderComponent
 public:
     Sprite(const Texture2D *texture);
     ~Sprite();
+
+    int GetAnimationDelay(int animID) const;
 
     void SetNumberAnimations(int num);
     void SetAnimationDelay(int id, int delay);
@@ -39,6 +41,8 @@ private:
     int current_anim;
     int current_frame;
     int current_delay;
+
+    std::unordered_map<int, int> animationDelays;
 
     const Texture2D *img;
     std::vector<Animation> animations;
