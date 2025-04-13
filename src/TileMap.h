@@ -63,6 +63,9 @@ public:
 	//Test for collisions with walls
 	bool TestCollisionWallLeft(const AABB& box) const;
 	bool TestCollisionWallRight(const AABB& box) const;
+	bool TestCollisionWallUp(const AABB& box) const;
+	bool TestCollisionWallDown(const AABB& box) const;
+
 	
 	//Test collision with the ground and update 'py' with the maximum y-position to prevent
 	//penetration of the grounded tile, that is, the pixel y-position above the grounded tile.

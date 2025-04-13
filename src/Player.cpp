@@ -281,7 +281,7 @@ void Player::Move()
 	int prev_y = pos.y;
 
 	// Handle X movement
-	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
+	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
 		pos.x += -PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingLeft();
@@ -298,7 +298,7 @@ void Player::Move()
 			if (state == State::IDLE) Stop();
 		}
 	}
-	else if (IsKeyDown(KEY_RIGHT))
+	else if (IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
 		pos.x += PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingRight();
@@ -317,7 +317,7 @@ void Player::Move()
 	}
 
 	// Handle Y movement
-	if (IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
+	if (IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_LEFT))
 	{
 		pos.y += -PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingUp();
@@ -328,13 +328,13 @@ void Player::Move()
 			else if (IsLookingDown()) ChangeAnimUp();
 		}
 		box = GetHitbox();
-		if (map->TestCollisionWallLeft(box))
+		if (map->TestCollisionWallUp(box))
 		{
 			pos.y = prev_y;
 			if (state == State::PUSHING) Stop();
 		}
 	}
-	else if (IsKeyDown(KEY_DOWN))
+	else if (IsKeyDown(KEY_DOWN) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_LEFT))
 	{
 		pos.y += PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingDown();
@@ -345,7 +345,7 @@ void Player::Move()
 			else if (IsLookingUp()) ChangeAnimDown();
 		}
 		box = GetHitbox();
-		if (map->TestCollisionWallRight(box))
+		if (map->TestCollisionWallDown(box))
 		{
 			pos.y = prev_y;
 			if (state == State::IDLE) Stop();

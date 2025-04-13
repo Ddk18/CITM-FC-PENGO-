@@ -166,6 +166,16 @@ bool TileMap::TestCollisionWallRight(const AABB& box) const
 {
 	return CollisionX(box.pos + Point(box.width - 1, 0), box.height);
 }
+bool TileMap::TestCollisionWallUp(const AABB& box) const
+{
+	return CollisionY(box.pos, box.width);
+}
+
+bool TileMap::TestCollisionWallDown(const AABB& box) const
+{
+	return CollisionY(box.pos + Point(0, box.height - 1), box.width);
+}
+
 bool TileMap::TestCollisionGround(const AABB& box, int *py) const
 {
 	Point p(box.pos.x, *py);	//control point
