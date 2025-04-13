@@ -18,6 +18,8 @@ public:
     void Update();
     void Render();
     void Release();
+    AppStatus GenerateProceduralLevel(); 
+
 
 private:
     AppStatus LoadLevel(int stage);

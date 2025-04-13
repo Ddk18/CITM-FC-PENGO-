@@ -105,7 +105,7 @@ AppStatus Scene::Init()
 		return AppStatus::ERROR;
 	}
 	//Load level
-	if (LoadLevel(1) != AppStatus::OK)
+	if (GenerateProceduralLevel() != AppStatus::OK)
 	{
 		LOG("Failed to load Level 1");
 		return AppStatus::ERROR;
@@ -120,6 +120,54 @@ AppStatus Scene::Init()
 
     return AppStatus::OK;
 }
+
+AppStatus Scene::GenerateProceduralLevel()
+{
+	const int size = LEVEL_WIDTH * LEVEL_HEIGHT;
+	int* map = new int[size];
+	std::fill_n(map, size, (int)Tile::AIR);
+
+	// Bordes exteriores sólidos
+	for (int y = 0; y < LEVEL_HEIGHT; ++y) {
+		for (int x = 0; x < LEVEL_WIDTH; ++x) {
+			if (x == 0 || x == LEVEL_WIDTH - 1 || y == 0 || y == LEVEL_HEIGHT - 1) {
+				map[y * LEVEL_WIDTH + x] = (int)Tile::BLOCK_BLUE;
+			}
+		}
+	}
+
+	// Bloques aleatorios
+	for (int i = 0; i < 80; ++i) {
+		int x = GetRandomValue(1, LEVEL_WIDTH - 2);
+		int y = GetRandomValue(1, LEVEL_HEIGHT - 2);
+		map[y * LEVEL_WIDTH + x] = (int)Tile::BLOCK_SQUARE1_TL;
+	}
+
+	// Posición del jugador
+	map[2 * LEVEL_WIDTH + 2] = (int)Tile::PLAYER;
+
+	// Cargar mapa
+	if (level->Load(map, LEVEL_WIDTH, LEVEL_HEIGHT) != AppStatus::OK) {
+		delete[] map;
+		return AppStatus::ERROR;
+	}
+
+	// Inicializar jugador
+	player->SetPos({ 2 * TILE_SIZE, 2 * TILE_SIZE });
+	player->InitScore();
+
+	// Eliminar posiciones de entidades/objetos del mapa para render correcto
+	level->ClearObjectEntityPositions();
+
+	delete[] map;
+	return AppStatus::OK;
+}
+
+
+
+
+
+
 AppStatus Scene::LoadLevel(int stage)
 {
 	int size;
