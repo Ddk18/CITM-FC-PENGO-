@@ -49,7 +49,7 @@ public:
 	void RestoreAnimationFrame();
 	void Stop();
 	void ResumeMovement();
-
+	TileMap* map;
 private:
 	
 	bool IsLookingRight() const;
@@ -83,7 +83,7 @@ private:
 
 	//Reference to the TileMap object
 	//This class does not own the object, it only holds a reference to it
-	TileMap *map;
+	
 
 	
 

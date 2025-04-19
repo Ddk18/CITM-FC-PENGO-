@@ -2,10 +2,10 @@
 #include "Entity.h"
 
 //Representation model size: 32x32
-#define SNOBEE_FRAME_SIZE		32
+#define SNOBEE_FRAME_SIZE		16
 //Logical model size: 24x30
-#define SNOBEE_PHYSICAL_WIDTH	24
-#define SNOBEE_PHYSICAL_HEIGHT	30
+#define SNOBEE_PHYSICAL_WIDTH	16
+#define SNOBEE_PHYSICAL_HEIGHT	16
 
 //Representation model size: 32x32
 #define TURRET_FRAME_SIZE		32

@@ -13,7 +13,7 @@ EnemyManager::~EnemyManager()
 AppStatus EnemyManager::Initialise()
 {
 	ResourceManager& data = ResourceManager::Instance();
-	if (data.LoadTexture(Resource::IMG_ENEMIES, "images/enemies.png") != AppStatus::OK)
+	if (data.LoadTexture(Resource::IMG_ENEMIES, "images/Sno-Bees/Sno-Bee 1.png") != AppStatus::OK)
 	{
 		LOG("Failed to load enemies sprite texture");
 		return AppStatus::ERROR;
@@ -40,7 +40,9 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 		return;
 	}
 		
-	enemy->Initialise(look, area);
+	enemy->Initialise(position, type, area, map);
+
+	
 	enemies.push_back(enemy);
 }
 AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
@@ -63,8 +65,13 @@ AABB EnemyManager::GetEnemyHitBox(const Point& pos, EnemyType type) const
 }
 void EnemyManager::Update(const AABB& player_hitbox)
 {
-	
+	for (Enemy* enemy : enemies)
+	{
+		enemy->Update(player_hitbox);
+	}
 }
+
+
 void EnemyManager::Draw() const
 {
 	for (const Enemy* enemy : enemies)

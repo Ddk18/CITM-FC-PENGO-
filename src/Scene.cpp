@@ -137,35 +137,48 @@ AppStatus Scene::GenerateProceduralLevel()
 	}
 
 	// Bloques aleatorios
-	for (int i = 0; i < 80; ++i) {
+	for (int i = 0; i < 100; ++i) {
 		int x = GetRandomValue(1, LEVEL_WIDTH - 2);
 		int y = GetRandomValue(1, LEVEL_HEIGHT - 2);
 		map[y * LEVEL_WIDTH + x] = (int)Tile::BLOCK_SQUARE1_TL;
 	}
 
-	// Posición del jugador
-	map[2 * LEVEL_WIDTH + 2] = (int)Tile::PLAYER;
+	// Posicionar al jugador
+	int playerX = 2, playerY = 2;
+	map[playerY * LEVEL_WIDTH + playerX] = (int)Tile::PLAYER;
 
-	// Cargar mapa
 	if (level->Load(map, LEVEL_WIDTH, LEVEL_HEIGHT) != AppStatus::OK) {
 		delete[] map;
 		return AppStatus::ERROR;
 	}
 
-	// Inicializar jugador
-	player->SetPos({ 2 * TILE_SIZE, 2 * TILE_SIZE });
+	player->SetPos({ playerX * TILE_SIZE, playerY * TILE_SIZE });
 	player->InitScore();
-
-	// Eliminar posiciones de entidades/objetos del mapa para render correcto
 	level->ClearObjectEntityPositions();
+
+	// Enemigos aleatorios
+	const int numEnemies = 5;
+	for (int i = 0; i < numEnemies; ++i) {
+		int x = GetRandomValue(1, LEVEL_WIDTH - 2);
+		int y = GetRandomValue(1, LEVEL_HEIGHT - 2);
+
+		int idx = y * LEVEL_WIDTH + x;
+
+		// Solo colocar si hay aire (evita superponer con bloques/jugador)
+		if (map[idx] == (int)Tile::AIR) {
+			Point pos = { x * TILE_SIZE, y * TILE_SIZE };
+
+			// Área de visión: centrada horizontalmente, 6x2 tiles
+			Point areaPos = { pos.x - 3 * TILE_SIZE, pos.y };
+			AABB visionArea(areaPos, 6 * TILE_SIZE, 2 * TILE_SIZE);
+
+			enemies->Add(pos, EnemyType::SNOBEE, visionArea, Look::LEFT);
+		}
+	}
 
 	delete[] map;
 	return AppStatus::OK;
 }
-
-
-
-
 
 
 
