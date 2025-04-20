@@ -33,6 +33,7 @@ public:
 	void Release();
 
 	TileMap* map = nullptr;
+	void SetTileMap(TileMap* m);
 
 private:
 	std::vector<Enemy*> enemies;

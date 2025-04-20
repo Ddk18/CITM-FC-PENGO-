@@ -2,7 +2,11 @@
 #include "Snobee.h"
 
 
-void SetTileMap(TileMap* m) { map = m; }
+void EnemyManager::SetTileMap(TileMap* m)
+{
+	this->map = m;
+}
+
 
 EnemyManager::EnemyManager()
 {
@@ -44,6 +48,7 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 	}
 		
 	enemy->Initialise(pos, type, area, map);
+
 
 
 	

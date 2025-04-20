@@ -1,6 +1,9 @@
 #include "Snobee.h"
 #include "Sprite.h"
 
+
+SNOBEE::~SNOBEE() = default;
+
 SNOBEE::SNOBEE(const Point& p, int width, int height, int frame_width, int frame_height) :
 	Enemy(p, width, height, frame_width, frame_height)
 {

@@ -126,7 +126,8 @@ AppStatus Scene::GenerateProceduralLevel()
 	const int size = LEVEL_WIDTH * LEVEL_HEIGHT;
 	int* map = new int[size];
 	std::fill_n(map, size, (int)Tile::AIR);
-	enemies->SetTileMap(map);
+	enemies->SetTileMap(level);
+
 
 	// Bordes exteriores sólidos
 	for (int y = 0; y < LEVEL_HEIGHT; ++y) {
