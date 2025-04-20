@@ -95,89 +95,89 @@ void SNOBEE::UpdateMovementAI(const AABB& playerBox)
 {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	const int tileSize = 16;
-	int baseSpeed = std::max(1, SNOBEE_SPEED / 2); // Protección contra división por cero
+	int baseSpeed = std::max(1, SNOBEE_SPEED / 2);
 
 	if (stepsRemaining == 0)
 	{
-		// Determinar dirección de movimiento
+		// Elegir dirección hacia el jugador o aleatoria
+		Point direction = { 0, 0 };
 		if (IsVisible(playerBox))
 		{
-			// Movimiento hacia el jugador
 			Point playerPos = playerBox.pos;
-
-			if (abs(playerPos.x - pos.x) > abs(playerPos.y - pos.y)) {
-				if (playerPos.x < pos.x) {
-					movement = { -baseSpeed, 0 };
-					look = Look::LEFT;
-					sprite->SetAnimation((int)SNOBEEAnim::WALKING_LEFT);
-				}
-				else {
-					movement = { baseSpeed, 0 };
-					look = Look::RIGHT;
-					sprite->SetAnimation((int)SNOBEEAnim::WALKING_RIGHT);
-				}
+			if (abs(playerPos.x - pos.x) > abs(playerPos.y - pos.y))
+			{
+				direction.x = (playerPos.x < pos.x) ? -baseSpeed : baseSpeed;
+				look = (direction.x < 0) ? Look::LEFT : Look::RIGHT;
 			}
-			else {
-				if (playerPos.y < pos.y) {
-					movement = { 0, -baseSpeed };
-				}
-				else {
-					movement = { 0, baseSpeed };
-				}
-				sprite->SetAnimation((look == Look::LEFT) ? (int)SNOBEEAnim::WALKING_LEFT
-					: (int)SNOBEEAnim::WALKING_RIGHT);
+			else
+			{
+				direction.y = (playerPos.y < pos.y) ? -baseSpeed : baseSpeed;
 			}
 		}
-		else {
+		else
+		{
 			// Movimiento aleatorio
 			int dir = GetRandomValue(0, 3);
-			switch (dir) {
-			case 0: movement = { -baseSpeed, 0 }; look = Look::LEFT;  sprite->SetAnimation((int)SNOBEEAnim::WALKING_LEFT); break;
-			case 1: movement = { baseSpeed, 0 };  look = Look::RIGHT; sprite->SetAnimation((int)SNOBEEAnim::WALKING_RIGHT); break;
-			case 2: movement = { 0, -baseSpeed }; break;
-			case 3: movement = { 0, baseSpeed };  break;
+			switch (dir)
+			{
+			case 0: direction = { -baseSpeed, 0 }; look = Look::LEFT; break;
+			case 1: direction = { baseSpeed, 0 };  look = Look::RIGHT; break;
+			case 2: direction = { 0, -baseSpeed }; break;
+			case 3: direction = { 0, baseSpeed };  break;
 			}
 		}
 
-		// Comprobar colisiones ANTES de moverse
-		AABB box = GetHitbox();
+		// Proyectar movimiento
+		AABB projected = GetHitbox();
+		projected.pos += direction;
 
+		// Comprobar colisión con el hitbox proyectado
 		bool blocked = false;
-		if (movement.x < 0) blocked = map->TestCollisionWallLeft(box);
-		else if (movement.x > 0) blocked = map->TestCollisionWallRight(box);
-		else if (movement.y < 0) blocked = map->TestCollisionWallUp(box);
-		else if (movement.y > 0) blocked = map->TestCollisionWallDown(box);
+		if (direction.x < 0) blocked = map->TestCollisionWallLeft(projected);
+		else if (direction.x > 0) blocked = map->TestCollisionWallRight(projected);
+		else if (direction.y < 0)
+		{
+			// Asegurar que proyectamos correctamente hacia arriba
+			AABB adjusted = projected;
+			adjusted.pos.y -= 1;
+			blocked = map->TestCollisionWallUp(adjusted);
+		}
+
+		else if (direction.y > 0) blocked = map->TestCollisionWallDown(projected);
 
 		if (blocked)
 		{
 			movement = { 0, 0 };
 			stepsRemaining = 0;
-
-			// Animación idle si no puede moverse
-			if (look == Look::LEFT)  sprite->SetAnimation((int)SNOBEEAnim::IDLE_LEFT);
-			else if (look == Look::RIGHT) sprite->SetAnimation((int)SNOBEEAnim::IDLE_RIGHT);
-
+			sprite->SetAnimation((look == Look::LEFT) ? (int)SNOBEEAnim::IDLE_LEFT : (int)SNOBEEAnim::IDLE_RIGHT);
 			return;
 		}
 
+		// Movimiento válido
+		movement = direction;
 		stepsRemaining = tileSize / baseSpeed;
+		if (movement.x != 0)
+		{
+			sprite->SetAnimation((look == Look::LEFT) ? (int)SNOBEEAnim::WALKING_LEFT : (int)SNOBEEAnim::WALKING_RIGHT);
+		}
+		else
+		{
+			sprite->SetAnimation((look == Look::LEFT) ? (int)SNOBEEAnim::WALKING_LEFT : (int)SNOBEEAnim::WALKING_RIGHT);
+		}
 	}
 
-	// Movimiento activo
 	pos += movement;
 	stepsRemaining--;
 
-	// Al terminar, volver a idle
 	if (stepsRemaining == 0)
 	{
-		if (look == Look::LEFT)
-			sprite->SetAnimation((int)SNOBEEAnim::IDLE_LEFT);
-		else if (look == Look::RIGHT)
-			sprite->SetAnimation((int)SNOBEEAnim::IDLE_RIGHT);
+		sprite->SetAnimation((look == Look::LEFT) ? (int)SNOBEEAnim::IDLE_LEFT : (int)SNOBEEAnim::IDLE_RIGHT);
 	}
 
 	sprite->Update();
 }
+
+
 
 
 
