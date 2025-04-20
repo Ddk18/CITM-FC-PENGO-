@@ -24,7 +24,8 @@ public:
 	~SNOBEE();
 
 	//Initialize the enemy with the specified look and area
-	AppStatus Initialise(const Point& p, EnemyType t, const AABB& area, TileMap* map);
+	AppStatus Initialise(const Point& pos, EnemyType type, const AABB& area, TileMap* map) override;
+
 
 
 

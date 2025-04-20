@@ -2,6 +2,8 @@
 #include "Snobee.h"
 
 
+void SetTileMap(TileMap* m) { map = m; }
+
 EnemyManager::EnemyManager()
 {
 	shots = nullptr;
@@ -32,6 +34,7 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 	if(type == EnemyType::SNOBEE)
 	{
 		enemy = new SNOBEE(pos, SNOBEE_PHYSICAL_WIDTH, SNOBEE_PHYSICAL_HEIGHT, SNOBEE_FRAME_SIZE, SNOBEE_FRAME_SIZE);
+
 	}
 	
 	else
@@ -40,7 +43,8 @@ void EnemyManager::Add(const Point& pos, EnemyType type, const AABB& area, Look 
 		return;
 	}
 		
-	enemy->Initialise(position, type, area, map);
+	enemy->Initialise(pos, type, area, map);
+
 
 	
 	enemies.push_back(enemy);

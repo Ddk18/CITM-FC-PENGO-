@@ -32,6 +32,8 @@ public:
 	//Delete all enemies and clear the enemy vector
 	void Release();
 
+	TileMap* map = nullptr;
+
 private:
 	std::vector<Enemy*> enemies;
 	

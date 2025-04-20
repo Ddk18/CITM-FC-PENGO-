@@ -10,11 +10,12 @@ SNOBEE::SNOBEE(const Point& p, int width, int height, int frame_width, int frame
 	current_step = 0;
 	current_frames = 0;
 }
-SNOBEE::~SNOBEE()
+AppStatus SNOBEE::Initialise(const Point& pos, EnemyType type, const AABB& area, TileMap* map)
 {
-}
-AppStatus SNOBEE::Initialise(const Point& p, EnemyType t, const AABB& area, TileMap* map)
-{
+	this->map = map;
+	this->visibility_area = area;
+	this->look = Look::RIGHT; // o LEFT, o según `type` si quieres variarlo
+
 	state = SNOBEEState::ROAMING;
 	this->map = map;
 
