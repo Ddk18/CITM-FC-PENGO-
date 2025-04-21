@@ -23,7 +23,7 @@ public:
 
 private:
     AppStatus GenerateProceduralLevel();
-    bool isPaused = false;
+    
 
     
     void CheckObjectCollisions();

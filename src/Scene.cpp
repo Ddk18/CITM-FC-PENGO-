@@ -233,20 +233,18 @@ void Scene::Update()
 		if (player->GetHitbox().TestAABB(e->GetHitbox()))
 		{
 			player->SetState(State::DEAD);
-			isPaused = true;  
 			break;
 		}
 	}
 
-	if (isPaused)
+	if(player->GetState() == State::DEAD)
 	{
 		if (IsKeyPressed(KEY_SPACE))
 		{
 			Release();
 			Init();
-			isPaused = false;
 		}
-		return; 
+		return; // ❄️ Detener toda lógica del juego
 	}
 
 
@@ -332,15 +330,16 @@ void Scene::RenderObjectsDebug(const Color& col) const
 }
 void Scene::RenderGUI() const
 {
-	//Temporal approach
 	DrawText(TextFormat("SCORE : %d", player->GetScore()), 10, 10, 8, LIGHTGRAY);
-	if (isPaused)
+
+	if (player->GetState() == State::DEAD)
 	{
 		const char* msg = "GAME OVER";
 		int textWidth = MeasureText(msg, 32);
 		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, RED);
 	}
-
-
-
 }
+
+
+
+
