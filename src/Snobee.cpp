@@ -93,6 +93,8 @@ void SNOBEE::InitPattern()
 
 void SNOBEE::UpdateMovementAI(const AABB& playerBox)
 {
+	
+
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	const int tileSize = 16;
 	int baseSpeed = std::max(1, SNOBEE_SPEED / 2);

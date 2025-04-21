@@ -55,6 +55,8 @@ void Sprite::SetAutomaticMode()
 }
 void Sprite::Update()
 {
+
+
     //Both animation modes (automatic and manual) are carry out with animation delay
     if (current_delay > 0)
     {

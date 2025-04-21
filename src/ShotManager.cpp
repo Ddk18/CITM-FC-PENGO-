@@ -39,6 +39,9 @@ void ShotManager::Clear()
 }
 void ShotManager::Update(const AABB& player_hitbox)
 {
+
+	
+
 	AABB box;
 	bool hit;
 	

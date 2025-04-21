@@ -269,6 +269,7 @@ void Player::Update()
 	//Instead, uses an independent behaviour for each axis.
 	Move();
 	
+	
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();

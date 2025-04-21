@@ -1,6 +1,8 @@
-#include "Scene.h"
+﻿#include "Scene.h"
 #include <stdio.h>
 #include "Globals.h"
+
+
 
 Scene::Scene()
 {
@@ -129,7 +131,7 @@ AppStatus Scene::GenerateProceduralLevel()
 	enemies->SetTileMap(level);
 
 
-	// Bordes exteriores s�lidos
+	// Bordes exteriores sólidos
 	for (int y = 0; y < LEVEL_HEIGHT; ++y) {
 		for (int x = 0; x < LEVEL_WIDTH; ++x) {
 			if (x == 0 || x == LEVEL_WIDTH - 1 || y == 0 || y == LEVEL_HEIGHT - 1) {
@@ -170,7 +172,7 @@ AppStatus Scene::GenerateProceduralLevel()
 		if (map[idx] == (int)Tile::AIR) {
 			Point pos = { x * TILE_SIZE, y * TILE_SIZE };
 
-			// �rea de visi�n: centrada horizontalmente, 6x2 tiles
+			// Área de visión: centrada horizontalmente, 6x2 tiles
 			Point areaPos = { pos.x - 3 * TILE_SIZE, pos.y };
 			AABB visionArea(areaPos, 6 * TILE_SIZE, 2 * TILE_SIZE);
 
@@ -205,7 +207,7 @@ void Scene::Update()
 	enemies->Update(hitbox);
 	shots->Update(hitbox);
 
-	// Colisi�n jugador-enemigo
+	// Colisión jugador-enemigo
 	if (player->GetState() != State::DEAD) {
 		for (Enemy* e : enemies->GetAll()) { 
 			if (player->GetHitbox().TestAABB(e->GetHitbox())) {
@@ -215,7 +217,37 @@ void Scene::Update()
 		}
 	}
 
+	// Congelar escena si el jugador está muerto
+	if (player->GetState() == State::DEAD) {
+		if (IsKeyPressed(KEY_SPACE)) {
+			// Reiniciar escena
+			Release();
+			Init();
+		}
+		return; // ← evitar seguir actualizando lógica mientras esté muerto
+	}
 
+	
+	for (Enemy* e : enemies->GetAll())
+	{
+		if (player->GetHitbox().TestAABB(e->GetHitbox()))
+		{
+			player->SetState(State::DEAD);
+			isPaused = true;  
+			break;
+		}
+	}
+
+	if (isPaused)
+	{
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Release();
+			Init();
+			isPaused = false;
+		}
+		return; 
+	}
 
 
 }
@@ -302,11 +334,13 @@ void Scene::RenderGUI() const
 {
 	//Temporal approach
 	DrawText(TextFormat("SCORE : %d", player->GetScore()), 10, 10, 8, LIGHTGRAY);
-	if (player->GetState() == State::DEAD) {
+	if (isPaused)
+	{
 		const char* msg = "GAME OVER";
 		int textWidth = MeasureText(msg, 32);
 		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, RED);
 	}
+
 
 
 }
