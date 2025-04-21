@@ -34,6 +34,7 @@ public:
 
 	TileMap* map = nullptr;
 	void SetTileMap(TileMap* m);
+	std::vector<Enemy*>& GetAll() { return enemies; }
 
 private:
 	std::vector<Enemy*> enemies;

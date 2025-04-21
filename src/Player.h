@@ -50,6 +50,10 @@ public:
 	void Stop();
 	void ResumeMovement();
 	TileMap* map;
+
+	State GetState() const { return state; }
+	void SetState(State s) { state = s; }
+
 private:
 	
 	bool IsLookingRight() const;

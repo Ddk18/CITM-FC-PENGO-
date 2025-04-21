@@ -204,6 +204,20 @@ void Scene::Update()
 	hitbox = player->GetHitbox();
 	enemies->Update(hitbox);
 	shots->Update(hitbox);
+
+	// Colisión jugador-enemigo
+	if (player->GetState() != State::DEAD) {
+		for (Enemy* e : enemies->GetAll()) { 
+			if (player->GetHitbox().TestAABB(e->GetHitbox())) {
+				player->SetState(State::DEAD);
+				break;
+			}
+		}
+	}
+
+
+
+
 }
 void Scene::Render()
 {
@@ -288,4 +302,11 @@ void Scene::RenderGUI() const
 {
 	//Temporal approach
 	DrawText(TextFormat("SCORE : %d", player->GetScore()), 10, 10, 8, LIGHTGRAY);
+	if (player->GetState() == State::DEAD) {
+		const char* msg = "GAME OVER";
+		int textWidth = MeasureText(msg, 32);
+		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, RED);
+	}
+
+
 }
