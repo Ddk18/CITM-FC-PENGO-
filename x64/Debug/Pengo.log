@@ -1,21 +1,2 @@
-﻿  AABB.cpp
-  Enemy.cpp
-  EnemyManager.cpp
-  Entity.cpp
-  Game.cpp
-  Globals.cpp
-  main.cpp
-  Object.cpp
-  Player.cpp
-  RenderComponent.cpp
-  ResourceManager.cpp
-  Scene.cpp
-  Shot.cpp
-  ShotManager.cpp
-  Snobee.cpp
-  Sprite.cpp
-  StaticImage.cpp
-  TileMap.cpp
-  Generando código...
-  Pengo.vcxproj -> C:\Users\Juan\Documents\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
+﻿  Pengo.vcxproj -> C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
           1 archivo(s) copiado(s).
