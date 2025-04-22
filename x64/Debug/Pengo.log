@@ -1,3 +1,13 @@
-﻿  LINK : no se encontró C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+﻿  Enemy.cpp
+  EnemyManager.cpp
+  Game.cpp
+  Player.cpp
+  Scene.cpp
+  ShotManager.cpp
+  Snobee.cpp
+  Sprite.cpp
+  TileMap.cpp
+  main.cpp
+  Generando código...
   Pengo.vcxproj -> C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
           1 archivo(s) copiado(s).

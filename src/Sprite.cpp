@@ -53,6 +53,11 @@ void Sprite::SetAutomaticMode()
 {
     mode = AnimMode::AUTOMATIC;
 }
+void Sprite::FreezeAnimationFrame()
+{
+ 
+}
+
 void Sprite::Update()
 {
 

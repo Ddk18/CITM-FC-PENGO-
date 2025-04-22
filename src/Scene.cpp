@@ -191,14 +191,25 @@ void Scene::Update()
 	Point p1, p2;
 	AABB hitbox;
 
-	//Switch between the different debug modes: off, on (sprites & hitboxes), on (hitboxes) 
+	// Modo depuración
 	if (IsKeyPressed(KEY_F1))
 	{
 		debug = (DebugMode)(((int)debug + 1) % (int)DebugMode::SIZE);
 	}
-	//Debug levels instantly
-	
 
+	// 🟥 Congelar escena si el jugador ha muerto
+	if (player->GetState() == State::DEAD)
+	{
+		player->Stop(); // Asegura que el jugador no se mueva
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Release();
+			Init();
+		}
+		return;
+	}
+
+	// Actualización normal
 	level->Update();
 	player->Update();
 	CheckObjectCollisions();
@@ -207,48 +218,20 @@ void Scene::Update()
 	enemies->Update(hitbox);
 	shots->Update(hitbox);
 
-	// Colisión jugador-enemigo
-	if (player->GetState() != State::DEAD) {
-		for (Enemy* e : enemies->GetAll()) { 
-			if (player->GetHitbox().TestAABB(e->GetHitbox())) {
-				player->SetState(State::DEAD);
-				break;
-			}
-		}
-	}
-
-	// Congelar escena si el jugador está muerto
-	if (player->GetState() == State::DEAD) {
-		if (IsKeyPressed(KEY_SPACE)) {
-			// Reiniciar escena
-			Release();
-			Init();
-		}
-		return; // ← evitar seguir actualizando lógica mientras esté muerto
-	}
-
-	
+	// 🔥 Colisión jugador-enemigo → muerte inmediata
 	for (Enemy* e : enemies->GetAll())
 	{
 		if (player->GetHitbox().TestAABB(e->GetHitbox()))
 		{
 			player->SetState(State::DEAD);
+			player->Stop(); // Detiene inmediatamente
 			break;
 		}
 	}
-
-	if(player->GetState() == State::DEAD)
-	{
-		if (IsKeyPressed(KEY_SPACE))
-		{
-			Release();
-			Init();
-		}
-		return; // ❄️ Detener toda lógica del juego
-	}
-
-
 }
+
+
+
 void Scene::Render()
 {
 	BeginMode2D(camera);

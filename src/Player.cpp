@@ -149,26 +149,23 @@ void Player::RestoreAnimationFrame() {
 }
 
 // Función Stop que congela la animación sin cambiar a la animación idle
-void Player::Stop() {
-	dir = { 0, 0 };
-	state = State::IDLE;
+void Player::Stop()
+{
+	dir = { 0, 0 }; // Detener movimiento
 
-	// En lugar de congelar la animación, cambiar a la animación IDLE correspondiente
-	switch (look) {
-	case Look::LEFT:
-		SetAnimation((int)PlayerAnim::IDLE_LEFT);
-		break;
-	case Look::RIGHT:
-		SetAnimation((int)PlayerAnim::IDLE_RIGHT);
-		break;
-	case Look::UP:
-		SetAnimation((int)PlayerAnim::IDLE_UP);
-		break;
-	case Look::DOWN:
-		SetAnimation((int)PlayerAnim::IDLE_DOWN);
-		break;
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
+	if (sprite != nullptr)
+	{
+		if (look == Look::LEFT)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_LEFT);
+		else
+			sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
+
+		sprite->FreezeAnimationFrame(); // Detener animación
 	}
 }
+
+
 
 // Ejemplo de función para reanudar el movimiento
 void Player::ResumeMovement() {
