@@ -1,7 +1,10 @@
-#include "Scene.h"
+﻿#include "Scene.h"
 #include <stdio.h>
 #include "Globals.h"
+#include <ctime>
 
+
+double tiempoTranscurrido();
 Scene::Scene()
 {
 	player = nullptr;
@@ -105,7 +108,7 @@ AppStatus Scene::Init()
 		return AppStatus::ERROR;
 	}
 	//Load level
-	if (LoadLevel(1) != AppStatus::OK)
+	if (GenerateProceduralLevel() != AppStatus::OK)
 	{
 		LOG("Failed to load Level 1");
 		return AppStatus::ERROR;
@@ -120,149 +123,113 @@ AppStatus Scene::Init()
 
     return AppStatus::OK;
 }
-AppStatus Scene::LoadLevel(int stage)
+
+AppStatus Scene::GenerateProceduralLevel()
 {
-	int size;
-	int x, y, i;
-	Tile tile;
-	Point pos;
-	int *map = nullptr;
-	Object *obj;
-	AABB hitbox, area;
-	
-	ClearLevel();
+	const int size = LEVEL_WIDTH * LEVEL_HEIGHT;
+	int* map = new int[size];
+	std::fill_n(map, size, (int)Tile::AIR);
+	enemies->SetTileMap(level);
 
-	size = LEVEL_WIDTH * LEVEL_HEIGHT;
-	if (stage == 1)
-	{
-		map = new int[size] {
-			 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,  13,
-			 9,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  62,   0,   0,  63,   0,   0,   0,   0,  10,
-			 9,   0,   0,   0,   0,   0,  13,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,   9,
-			10,   0,   0,   0,  13,   0,   0,  13,   0,   0,  13,   0,  13,   0,   0,   0,  -1,   0,   0,   0,   0,	  0,   0,   0,  10,
-			 9,   0,   0,  13,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 100,   0,   0,   0,   0,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  13,   0,   0,  17,  18,  17,  18,  22,  23,	  0,   0,   0,  10,
-			 9,  11,  12,   0,   0,  13,   0,   0,  13,  17,  18,  17,  18,   0,   0,   0,   0,   0,   0,  20,  21,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,	  0,  62,   0,  10,
-			 9,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  22,  23,   9,   0,  20,  21,	  0,  62,   0,  10,
-			 9,   0,   0,   0,   0,  63,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,  10,   0,  20,  21,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,   9,   0,  20,  21,	  0,  62,   0,  10,
-			 9,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,  10,   0,  20,  21,	  0,   0,   0,   9,
-			10,  17,  18,  17,  18,  13,   13,   13,   13,   13,  13,  17,  18,  13,   0,  20,  21,   9,   0,  20,  21,	  0,   0,   0,  10,
-			 9,   1,   2,   5,   6,  40,  70,  70,  70,  70,  41,   1,   2,   9,   0,  20,  21,  10,   0,  20,  21,	  0,   0,   0,   9,
-			10,   3,   4,   7,   8,  13,  14,  15,  16,  11,  12,   3,   4,  10,  14,  15,  16,  13,  14,  15,  16,   0,  13,   0,  10
-		};
-		player->InitScore();
-	}
-	else if (stage == 2)
-	{
-		map = new int[size] {
-			13,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  13,   0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,  13,
-			 9,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   9,   0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,   9,
-			10,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  10,   0,   0,   0,   0,   0,   0,   0,   0,  63,   0,   0,  10,
-			 9,   0,   0,   0,  62,   0,   0,   0,   0,   0,   0,   0,   9,   0,   0,  -1,  -1,   0,   0,   0,   0,   0,   0,   0,   9,
-			10,   0,   0,  62,   0,   0,   0,   0,   0,   0,   0,   0,  10,   0,   0, 200,  -1,   0,   0,   0,   0,   0,   0,   0,  10,
-			 9,   0,  -1,  -1,   0,   0,   0,   0,   0,   0,   0,   0,   9,  22,  23,  13,  17,  18,  17,  18,  17,  18,  13,   0,   9,
-			10,   0, 200,  -1,   0,   0,   0,   0,   0,   0,   0,   0,  10,  20,  21,   0,   0,   0,   0,   0,   0,   0,   0,   0,  10,
-			 9,   0,  13,  17,  18,  17,  18,  17,  18,  13,  22,  23,  13,  20,  21,   0,   0,   0,   0,   0,   0,   0,   0,   0,   9,
-			10,  -1,  -1,   0,   0,   0,   0,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,   0,   0,   0,   0,   0,   0,  13,  10,
-			 9, 302,  -1,   0,   0,   0,   0,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,   0,   0,   0,   0,	  0,  -1,  -1,   9,
-			10,  13,  13,   0,   0,  62,  62,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,   0,  63,   0,   0,   0, 301,  -1,  10,
-			 9,   0,   0,   0,   0,   0,   0,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,  63,   0,  63,   0,   0,  11,  12,   9,
-			10,   0,   0,  -1,   0,   0,   0,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,   0,   0,   0,   0,   0,  -1,  -1,  10,
-			 9,  13,   0, 100,   0,   0,   0,   0,   0,   0,  20,  21,   0,  20,  21,   0,   0,   0,   0,   0,   0,   0, 301,  -1,   9,
-			10,  17,  18,  13,   13,   13,   13,   13,  13,  17,  18,  17,  18,  17,  18,  17,  13,   0,   0,   0,   0,	 13,  17,  18,  10,
-			 9,   1,   2,  40,  70,  70,  70,  70,  41,   9,   5,   6,   9,   5,   6,   9,  40,  70,  70,  70,  70,  41,   1,   2,   9,
-			10,   3,   4,  13,  14,  15,  16,  11,  12,  10,   7,   8,  10,   7,   8,  10,  13,  14,  15,  16,  11,  12,   3,   4,   10
-		};
-	}
-	else
-	{
-		//Error level doesn't exist or incorrect level number
-		LOG("Failed to load level, stage %d doesn't exist", stage);
-		return AppStatus::ERROR;	
-	}
-	
-	//Tile map
-	level->Load(map, LEVEL_WIDTH, LEVEL_HEIGHT);
 
-	//Entities and objects
-	i = 0;
-	for (y = 0; y < LEVEL_HEIGHT; ++y)
-	{
-		for (x = 0; x < LEVEL_WIDTH; ++x)
-		{
-			tile = (Tile)map[i];
-			if (level->IsTileEntity(tile) || level->IsTileObject(tile))
-			{
-				pos.x = x * TILE_SIZE;
-				pos.y = y * TILE_SIZE + TILE_SIZE - 1;
-			
-				if (tile == Tile::PLAYER)
-				{
-					player->SetPos(pos);
-				}
-				else if (tile == Tile::ITEM_APPLE)
-				{
-					obj = new Object(pos, ObjectType::APPLE);
-					objects.push_back(obj);
-				}
-				else if (tile == Tile::ITEM_CHILI)
-				{	
-					obj = new Object(pos, ObjectType::CHILI);
-					objects.push_back(obj);
-				}
-				else if (tile == Tile::SLIME)
-				{
-					pos.x += (SNOBEE_FRAME_SIZE- SNOBEE_PHYSICAL_WIDTH)/2;
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::SNOBEE);
-					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::SNOBEE, area);
-				}
-				else if (tile == Tile::TURRET_LEFT)
-				{
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::TURRET);
-					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::TURRET, area, Look::LEFT);
-				}
-				else if (tile == Tile::TURRET_RIGHT)
-				{
-					hitbox = enemies->GetEnemyHitBox(pos, EnemyType::TURRET);
-					area = level->GetSweptAreaX(hitbox);
-					enemies->Add(pos, EnemyType::TURRET, area, Look::RIGHT);
-				}
-				else
-				{
-					LOG("Internal error loading scene: invalid entity or object tile id")
-				}
+	// Bordes exteriores sólidos
+	for (int y = 0; y < LEVEL_HEIGHT; ++y) {
+		for (int x = 0; x < LEVEL_WIDTH; ++x) {
+			if (x == 0 || x == LEVEL_WIDTH - 1 || y == 0 || y == LEVEL_HEIGHT - 1) {
+				map[y * LEVEL_WIDTH + x] = (int)Tile::BLOCK_BLUE;
 			}
-			++i;
 		}
 	}
-	
-	//Remove initial positions of objects and entities from the map
-	level->ClearObjectEntityPositions();
-	
-	delete[] map;
 
+	// Bloques aleatorios
+	for (int i = 0; i < 100; ++i) {
+		int x = GetRandomValue(1, LEVEL_WIDTH - 2);
+		int y = GetRandomValue(1, LEVEL_HEIGHT - 2);
+		map[y * LEVEL_WIDTH + x] = (int)Tile::BLOCK_SQUARE1_TL;
+	}
+
+	// Posicionar al jugador
+	int playerX = 2, playerY = 2;
+	map[playerY * LEVEL_WIDTH + playerX] = (int)Tile::PLAYER;
+
+	if (level->Load(map, LEVEL_WIDTH, LEVEL_HEIGHT) != AppStatus::OK) {
+		delete[] map;
+		return AppStatus::ERROR;
+	}
+
+	player->SetPos({ playerX * TILE_SIZE, playerY * TILE_SIZE });
+	player->InitScore();
+	level->ClearObjectEntityPositions();
+
+	// Enemigos aleatorios
+	const int numEnemies = 5;
+	for (int i = 0; i < numEnemies; ++i) {
+		int x = GetRandomValue(1, LEVEL_WIDTH - 2);
+		int y = GetRandomValue(1, LEVEL_HEIGHT - 2);
+
+		int idx = y * LEVEL_WIDTH + x;
+
+		// Solo colocar si hay aire (evita superponer con bloques/jugador)
+		if (map[idx] == (int)Tile::AIR) {
+			Point pos = { x * TILE_SIZE, y * TILE_SIZE };
+
+			// Área de visión: centrada horizontalmente, 6x2 tiles
+			Point areaPos = { pos.x - 3 * TILE_SIZE, pos.y };
+			AABB visionArea(areaPos, 6 * TILE_SIZE, 2 * TILE_SIZE);
+
+			enemies->Add(pos, EnemyType::SNOBEE, visionArea, Look::LEFT);
+		}
+	}
+
+	delete[] map;
 	return AppStatus::OK;
 }
+
+
+
 void Scene::Update()
 {
 	Point p1, p2;
 	AABB hitbox;
 
-	//Switch between the different debug modes: off, on (sprites & hitboxes), on (hitboxes) 
+	// Modo depuración
 	if (IsKeyPressed(KEY_F1))
 	{
 		debug = (DebugMode)(((int)debug + 1) % (int)DebugMode::SIZE);
 	}
-	//Debug levels instantly
-	if (IsKeyPressed(KEY_ONE))		LoadLevel(1);
-	else if (IsKeyPressed(KEY_TWO))	LoadLevel(2);
 
+	// 🟥 Congelar escena si el jugador ha muerto
+	if (player->GetState() == State::DEAD)
+	{
+		player->Stop(); // Asegura que el jugador no se mueva
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Release();
+			Init();
+		}
+		return;
+	}
+
+
+	if (tiempoTranscurrido() > 20) {
+		player->SetState(State::WIN);
+	}
+
+
+	if (player->GetState() == State::WIN)
+	{
+		player->Stop(); // Asegura que el jugador no se mueva
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Release();
+			Init();
+		}
+		return;
+	}
+
+
+
+	// Actualización normal
 	level->Update();
 	player->Update();
 	CheckObjectCollisions();
@@ -270,7 +237,23 @@ void Scene::Update()
 	hitbox = player->GetHitbox();
 	enemies->Update(hitbox);
 	shots->Update(hitbox);
+
+	// Colisión enemigo → muerte 
+	for (Enemy* e : enemies->GetAll())
+	{
+		if (player->GetHitbox().TestAABB(e->GetHitbox()))
+		{
+			player->SetState(State::DEAD);
+			player->Stop(); // Detiene inmediatamente
+			break;
+		}
+	}
+
+	
 }
+
+
+
 void Scene::Render()
 {
 	BeginMode2D(camera);
@@ -335,6 +318,7 @@ void Scene::ClearLevel()
 	objects.clear();
 	enemies->Release();
 	shots->Clear();
+
 }
 void Scene::RenderObjects() const
 {
@@ -352,6 +336,35 @@ void Scene::RenderObjectsDebug(const Color& col) const
 }
 void Scene::RenderGUI() const
 {
-	//Temporal approach
 	DrawText(TextFormat("SCORE : %d", player->GetScore()), 10, 10, 8, LIGHTGRAY);
+
+	if (player->GetState() == State::DEAD)
+	{
+		const char* msg = "GAME OVER";
+		int textWidth = MeasureText(msg, 32);
+		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, RED);
+	}
+
+	if (player->GetState() == State::WIN)
+	{
+		const char* msg = "WIN";
+		int textWidth = MeasureText(msg, 32);
+		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, GREEN);
+	}
 }
+double tiempoTranscurrido() {
+	static clock_t inicio = clock();  // Marca de inicio persistente
+	clock_t actual = clock();         // Marca actual
+
+	double segundos = double(actual - inicio) / CLOCKS_PER_SEC;
+
+	// Reinicia automáticamente al llegar a 21
+	if (segundos >= 21.0) {
+		inicio = clock();
+		return 0.0;
+	}
+
+	return segundos;
+}
+
+

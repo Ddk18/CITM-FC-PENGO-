@@ -1,10 +1,4 @@
-Project executed on 07-04-2025 at 18:24:17.
+Project executed on 23-04-2025 at 12:56:12.
 main.cpp(13): Application start
-EnemyManager.cpp(57): Internal error while computing hitbox for an invalid enemy type
-EnemyManager.cpp(39): Internal error: trying to add a new enemy with invalid type
-EnemyManager.cpp(57): Internal error while computing hitbox for an invalid enemy type
-EnemyManager.cpp(39): Internal error: trying to add a new enemy with invalid type
-EnemyManager.cpp(57): Internal error while computing hitbox for an invalid enemy type
-EnemyManager.cpp(39): Internal error: trying to add a new enemy with invalid type
 main.cpp(34): Application finish
 main.cpp(37): Bye :)

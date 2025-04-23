@@ -10,15 +10,15 @@
 #define PLAYER_FRAME_SIZE		16
 
 //tamaño real del personaje ingame
-#define PLAYER_PHYSICAL_WIDTH	16
-#define PLAYER_PHYSICAL_HEIGHT	17
+#define PLAYER_PHYSICAL_WIDTH	15
+#define PLAYER_PHYSICAL_HEIGHT	15
 
 //Horizontal and vertical speed 
 #define PLAYER_SPEED			2
 
 
 //Logic states
-enum class State { IDLE, WALKING, PUSHING, DEAD };
+enum class State { IDLE, WALKING, PUSHING, DEAD, WIN };
 
 //Rendering states
 enum class PlayerAnim {
@@ -49,6 +49,10 @@ public:
 	void RestoreAnimationFrame();
 	void Stop();
 	void ResumeMovement();
+	TileMap* map;
+
+	State GetState() const { return state; }
+	void SetState(State s) { state = s; }
 
 private:
 	
@@ -83,7 +87,7 @@ private:
 
 	//Reference to the TileMap object
 	//This class does not own the object, it only holds a reference to it
-	TileMap *map;
+	
 
 	
 

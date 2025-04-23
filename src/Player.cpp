@@ -149,26 +149,27 @@ void Player::RestoreAnimationFrame() {
 }
 
 // Función Stop que congela la animación sin cambiar a la animación idle
-void Player::Stop() {
-	dir = { 0, 0 };
-	state = State::IDLE;
+void Player::Stop()
+{
+	dir = { 0, 0 }; // Detener movimiento
 
-	// En lugar de congelar la animación, cambiar a la animación IDLE correspondiente
-	switch (look) {
-	case Look::LEFT:
-		SetAnimation((int)PlayerAnim::IDLE_LEFT);
-		break;
-	case Look::RIGHT:
-		SetAnimation((int)PlayerAnim::IDLE_RIGHT);
-		break;
-	case Look::UP:
-		SetAnimation((int)PlayerAnim::IDLE_UP);
-		break;
-	case Look::DOWN:
-		SetAnimation((int)PlayerAnim::IDLE_DOWN);
-		break;
+	Sprite* sprite = dynamic_cast<Sprite*>(render);
+	if (sprite != nullptr)
+	{
+		if (look == Look::LEFT)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_LEFT);
+		else if (look == Look::RIGHT)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
+		else if (look == Look::UP)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_UP);
+		else if (look == Look::DOWN)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_DOWN);
+
+		sprite->FreezeAnimationFrame(); // Detener animación
 	}
 }
+
+
 
 // Ejemplo de función para reanudar el movimiento
 void Player::ResumeMovement() {
@@ -269,6 +270,7 @@ void Player::Update()
 	//Instead, uses an independent behaviour for each axis.
 	Move();
 	
+	
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
@@ -281,7 +283,7 @@ void Player::Move()
 	int prev_y = pos.y;
 
 	// Handle X movement
-	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT))
+	if (IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
 		pos.x += -PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingLeft();
@@ -298,7 +300,7 @@ void Player::Move()
 			if (state == State::IDLE) Stop();
 		}
 	}
-	else if (IsKeyDown(KEY_RIGHT))
+	else if (IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
 		pos.x += PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingRight();
@@ -317,7 +319,7 @@ void Player::Move()
 	}
 
 	// Handle Y movement
-	if (IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
+	if (IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_LEFT))
 	{
 		pos.y += -PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingUp();
@@ -328,13 +330,13 @@ void Player::Move()
 			else if (IsLookingDown()) ChangeAnimUp();
 		}
 		box = GetHitbox();
-		if (map->TestCollisionWallLeft(box))
+		if (map->TestCollisionWallUp(box))
 		{
 			pos.y = prev_y;
 			if (state == State::PUSHING) Stop();
 		}
 	}
-	else if (IsKeyDown(KEY_DOWN))
+	else if (IsKeyDown(KEY_DOWN) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_LEFT))
 	{
 		pos.y += PLAYER_SPEED;
 		if (state == State::IDLE) StartWalkingDown();
@@ -345,7 +347,7 @@ void Player::Move()
 			else if (IsLookingUp()) ChangeAnimDown();
 		}
 		box = GetHitbox();
-		if (map->TestCollisionWallRight(box))
+		if (map->TestCollisionWallDown(box))
 		{
 			pos.y = prev_y;
 			if (state == State::IDLE) Stop();

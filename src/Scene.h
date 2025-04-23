@@ -18,9 +18,13 @@ public:
     void Update();
     void Render();
     void Release();
+   
+
 
 private:
-    AppStatus LoadLevel(int stage);
+    AppStatus GenerateProceduralLevel();
+    
+
     
     void CheckObjectCollisions();
     void ClearLevel();
