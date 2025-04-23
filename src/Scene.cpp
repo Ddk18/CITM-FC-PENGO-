@@ -1,9 +1,10 @@
 ﻿#include "Scene.h"
 #include <stdio.h>
 #include "Globals.h"
+#include <ctime>
 
 
-
+double tiempoTranscurrido();
 Scene::Scene()
 {
 	player = nullptr;
@@ -209,6 +210,25 @@ void Scene::Update()
 		return;
 	}
 
+
+	if (tiempoTranscurrido() > 20) {
+		player->SetState(State::WIN);
+	}
+
+
+	if (player->GetState() == State::WIN)
+	{
+		player->Stop(); // Asegura que el jugador no se mueva
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Release();
+			Init();
+		}
+		return;
+	}
+
+
+
 	// Actualización normal
 	level->Update();
 	player->Update();
@@ -218,7 +238,7 @@ void Scene::Update()
 	enemies->Update(hitbox);
 	shots->Update(hitbox);
 
-	// 🔥 Colisión jugador-enemigo → muerte inmediata
+	// Colisión enemigo → muerte 
 	for (Enemy* e : enemies->GetAll())
 	{
 		if (player->GetHitbox().TestAABB(e->GetHitbox()))
@@ -228,6 +248,8 @@ void Scene::Update()
 			break;
 		}
 	}
+
+	
 }
 
 
@@ -296,6 +318,7 @@ void Scene::ClearLevel()
 	objects.clear();
 	enemies->Release();
 	shots->Clear();
+
 }
 void Scene::RenderObjects() const
 {
@@ -321,8 +344,27 @@ void Scene::RenderGUI() const
 		int textWidth = MeasureText(msg, 32);
 		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, RED);
 	}
+
+	if (player->GetState() == State::WIN)
+	{
+		const char* msg = "WIN";
+		int textWidth = MeasureText(msg, 32);
+		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, GREEN);
+	}
 }
+double tiempoTranscurrido() {
+	static clock_t inicio = clock();  // Marca de inicio persistente
+	clock_t actual = clock();         // Marca actual
 
+	double segundos = double(actual - inicio) / CLOCKS_PER_SEC;
 
+	// Reinicia automáticamente al llegar a 21
+	if (segundos >= 21.0) {
+		inicio = clock();
+		return 0.0;
+	}
+
+	return segundos;
+}
 
 

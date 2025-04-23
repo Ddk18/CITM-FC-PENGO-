@@ -158,8 +158,12 @@ void Player::Stop()
 	{
 		if (look == Look::LEFT)
 			sprite->SetAnimation((int)PlayerAnim::IDLE_LEFT);
-		else
+		else if (look == Look::RIGHT)
 			sprite->SetAnimation((int)PlayerAnim::IDLE_RIGHT);
+		else if (look == Look::UP)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_UP);
+		else if (look == Look::DOWN)
+			sprite->SetAnimation((int)PlayerAnim::IDLE_DOWN);
 
 		sprite->FreezeAnimationFrame(); // Detener animación
 	}

@@ -18,7 +18,7 @@
 
 
 //Logic states
-enum class State { IDLE, WALKING, PUSHING, DEAD };
+enum class State { IDLE, WALKING, PUSHING, DEAD, WIN };
 
 //Rendering states
 enum class PlayerAnim {

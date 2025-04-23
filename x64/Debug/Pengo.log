@@ -1,13 +1,5 @@
-﻿  Enemy.cpp
-  EnemyManager.cpp
-  Game.cpp
-  Player.cpp
-  Scene.cpp
-  ShotManager.cpp
-  Snobee.cpp
-  Sprite.cpp
+﻿  Scene.cpp
   TileMap.cpp
-  main.cpp
   Generando código...
-  Pengo.vcxproj -> C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
+  Pengo.vcxproj -> C:\Users\enzoam\Documents\GitHub\CITM-FC-PENGO-\x64\Debug\Pengo.exe
           1 archivo(s) copiado(s).
