@@ -106,10 +106,10 @@
     <ClInclude Include="src\StaticImage.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="dependencies\raylib\include\raylib.h">
+    <ClInclude Include="dependencies\raylib\include\raymath.h">
       <Filter>Dependencias internas</Filter>
     </ClInclude>
-    <ClInclude Include="dependencies\raylib\include\raymath.h">
+    <ClInclude Include="dependencies\raylib\include\raylib.h">
       <Filter>Dependencias internas</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,5 +134,10 @@
     <Library Include="dependencies\raylib\lib\raylib.lib">
       <Filter>Dependencias internas</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dependencies\raylib\bin\raylib.dll">
+      <Filter>Dependencias internas</Filter>
+    </None>
   </ItemGroup>
 </Project>
