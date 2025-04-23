@@ -31,7 +31,7 @@ void TileMap::InitTileDictionary()
 {
 	const int n = TILE_SIZE;
 
-	dict_rect[(int)Tile::BLOCK_SQUARE1_TL] = { 0,  0, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE1_TL] = { 3*n,  0, n, n };
 	dict_rect[(int)Tile::BLOCK_SQUARE1_TR] = { n,  0, n, n };
 	dict_rect[(int)Tile::BLOCK_SQUARE1_BL] = { 0, n, n, n };
 	dict_rect[(int)Tile::BLOCK_SQUARE1_BR] = { n, n, n, n };
@@ -43,7 +43,7 @@ void TileMap::InitTileDictionary()
 	dict_rect[(int)Tile::BLOCK_VERT2_B] = { 4 * n, n, n, n };
 	dict_rect[(int)Tile::BLOCK_HORIZ2_L] = { 5 * n, 0, n, n };
 	dict_rect[(int)Tile::BLOCK_HORIZ2_R] = { 6 * n, 0, n, n };
-	dict_rect[(int)Tile::BLOCK_BLUE] = { 7 * n, 0, n, n };
+	dict_rect[(int)Tile::BLOCK_BLUE] = { 5*n, 0, n, n };
 	dict_rect[(int)Tile::BLOCK_HORIZ3_L] = { 5 * n, n, n, n };
 	dict_rect[(int)Tile::BLOCK_HORIZ3_M] = { 6 * n, n, n, n };
 	dict_rect[(int)Tile::BLOCK_HORIZ3_R] = { 7 * n, n, n, n };
