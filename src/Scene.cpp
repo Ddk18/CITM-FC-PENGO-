@@ -3,15 +3,21 @@
 #include "Globals.h"
 #include <ctime>
 
+static clock_t inicioTiempo = 0;
+
+void ResetTiempoTranscurrido()
+{
+	inicioTiempo = clock();
+}
 
 double tiempoTranscurrido();
 Scene::Scene()
 {
 	player = nullptr;
-    level = nullptr;
+	level = nullptr;
 	enemies = nullptr;
 	shots = nullptr;
-	
+
 	camera.target = { 0, 0 };				//Center of the screen
 	camera.offset = { 0, MARGIN_GUI_Y };	//Offset from the target (center of the screen)
 	camera.rotation = 0.0f;					//No rotation
@@ -27,18 +33,18 @@ Scene::~Scene()
 		delete player;
 		player = nullptr;
 	}
-    if (level != nullptr)
-    {
+	if (level != nullptr)
+	{
 		level->Release();
-        delete level;
-        level = nullptr;
-    }
+		delete level;
+		level = nullptr;
+	}
 	for (Entity* obj : objects)
 	{
 		delete obj;
 	}
 	objects.clear();
-	if(enemies != nullptr)
+	if (enemies != nullptr)
 	{
 		enemies->Release();
 		delete enemies;
@@ -65,7 +71,7 @@ AppStatus Scene::Init()
 		LOG("Failed to initialise Player");
 		return AppStatus::ERROR;
 	}
-	
+
 	//Create enemy manager
 	enemies = new EnemyManager();
 	if (enemies == nullptr)
@@ -93,14 +99,14 @@ AppStatus Scene::Init()
 		LOG("Failed to initialise Shot Manager");
 		return AppStatus::ERROR;
 	}
-	
+
 	//Create level 
-    level = new TileMap();
-    if (level == nullptr)
-    {
-        LOG("Failed to allocate memory for Level");
-        return AppStatus::ERROR;
-    }
+	level = new TileMap();
+	if (level == nullptr)
+	{
+		LOG("Failed to allocate memory for Level");
+		return AppStatus::ERROR;
+	}
 	//Initialise level
 	if (level->Initialise() != AppStatus::OK)
 	{
@@ -121,7 +127,9 @@ AppStatus Scene::Init()
 	//Assign the shot manager reference to the enemy manager so enemies can add shots
 	enemies->SetShotManager(shots);
 
-    return AppStatus::OK;
+	ResetTiempoTranscurrido();
+
+	return AppStatus::OK;
 }
 
 AppStatus Scene::GenerateProceduralLevel()
@@ -198,7 +206,7 @@ void Scene::Update()
 		debug = (DebugMode)(((int)debug + 1) % (int)DebugMode::SIZE);
 	}
 
-	// 🟥 Congelar escena si el jugador ha muerto
+	// Congelar escena si el jugador ha muerto
 	if (player->GetState() == State::DEAD)
 	{
 		player->Stop(); // Asegura que el jugador no se mueva
@@ -249,7 +257,7 @@ void Scene::Update()
 		}
 	}
 
-	
+
 }
 
 
@@ -258,7 +266,7 @@ void Scene::Render()
 {
 	BeginMode2D(camera);
 
-    level->Render();
+	level->Render();
 	if (debug == DebugMode::OFF || debug == DebugMode::SPRITES_AND_HITBOXES)
 	{
 		RenderObjects();
@@ -280,7 +288,7 @@ void Scene::Render()
 }
 void Scene::Release()
 {
-    level->Release();
+	level->Release();
 	player->Release();
 	ClearLevel();
 }
@@ -352,19 +360,10 @@ void Scene::RenderGUI() const
 		DrawText(msg, (WINDOW_WIDTH - textWidth) / 2, WINDOW_HEIGHT / 2, 32, GREEN);
 	}
 }
-double tiempoTranscurrido() {
-	static clock_t inicio = clock();  // Marca de inicio persistente
-	clock_t actual = clock();         // Marca actual
-
-	double segundos = double(actual - inicio) / CLOCKS_PER_SEC;
-
-	// Reinicia automáticamente al llegar a 21
-	if (segundos >= 21.0) {
-		inicio = clock();
-		return 0.0;
-	}
-
+double tiempoTranscurrido()
+{
+	clock_t actual = clock();
+	double segundos = double(actual - inicioTiempo) / CLOCKS_PER_SEC;
 	return segundos;
 }
-
 
