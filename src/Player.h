@@ -5,6 +5,16 @@
 
 
 
+enum ScoreAction {
+	KILL_1_SNOWBEE,       // 400 punts
+	KILL_2_SNOWBEES,      // 1600 punts
+	KILL_3_SNOWBEES,      // 3200 punts
+	DESTROY_EGG,          // 500 punts
+	ALIGN_DIAMONDS_SAFE,  // 10.000 punts
+	ALIGN_DIAMONDS_DANGER,// 30.000 punts
+	FAST_CLEAR_BONUS      // 5.000 punts
+	// No incloem SACSEJAR_PARET ni MORIR ja que no donen punts
+};
 
 //tamaño del lado del sprite
 #define PLAYER_FRAME_SIZE		16
@@ -37,10 +47,6 @@ public:
 	AppStatus Initialise();
 	void SetTileMap(TileMap* tilemap);
 
-	void InitScore();
-	void IncrScore(int n);
-	int GetScore();
-
 	void Update();
 	void DrawDebug(const Color& col) const;
 	void Release();
@@ -54,8 +60,15 @@ public:
 	State GetState() const { return state; }
 	void SetState(State s) { state = s; }
 
+	void InitScore();
+	void IncrScore(int n);
+	void AddScoreForAction(ScoreAction action);
+	void AddKillScore(int numSnoBeesKilled);
+	int GetScore();
+
 private:
 	
+	int score;
 	bool IsLookingRight() const;
 	bool IsLookingLeft() const;
 	bool IsLookingDown() const;
@@ -91,6 +104,6 @@ private:
 
 	
 
-	int score;
+
 };
 

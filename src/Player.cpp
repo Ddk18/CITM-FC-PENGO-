@@ -80,18 +80,7 @@ AppStatus Player::Initialise()
 
 	return AppStatus::OK;
 }
-void Player::InitScore()
-{
-	score = 0;
-}
-void Player::IncrScore(int n)
-{
-	score += n;
-}
-int Player::GetScore()
-{
-	return score;
-}
+
 void Player::SetTileMap(TileMap* tilemap)
 {
 	map = tilemap;
@@ -397,4 +386,76 @@ void Player::Release()
 	data.ReleaseTexture(Resource::IMG_PLAYER);
 
 	render->Release();
+}
+
+void Player::InitScore()
+{
+	score = 0;
+}
+
+void Player::IncrScore(int n)
+{
+	score += n;
+}
+
+int Player::GetScore()
+{
+	return score;
+}
+
+void Player::AddScoreForAction(ScoreAction action)
+{
+	switch (action)
+	{
+	case KILL_1_SNOWBEE:
+		score += 400;
+		break;
+	case KILL_2_SNOWBEES:
+		score += 1600;
+		break;
+	case KILL_3_SNOWBEES:
+		score += 3200;
+		break;
+	case DESTROY_EGG:
+		score += 500;
+		break;
+	case ALIGN_DIAMONDS_SAFE:
+		score += 10000;
+		break;
+	case ALIGN_DIAMONDS_DANGER:
+		score += 30000;
+		break;
+	case FAST_CLEAR_BONUS:
+		score += 5000;
+		break;
+	default:
+		break;
+	}
+}
+
+void Player::AddKillScore(int numSnoBeesKilled)
+{
+	if (numSnoBeesKilled <= 0) return;
+
+	int base = 400;
+	int scoreToAdd = 0;
+
+	switch (numSnoBeesKilled)
+	{
+	case 1:
+		scoreToAdd = base;
+		break;
+	case 2:
+		scoreToAdd = base * 2 * 2; // 1600
+		break;
+	case 3:
+		scoreToAdd = base * 4 * 2; // 3200
+		break;
+	default:
+		// Si per error arriba un valor més gran, seguim amb un càlcul progressiu
+		scoreToAdd = base * numSnoBeesKilled * numSnoBeesKilled;
+		break;
+	}
+
+	score += scoreToAdd;
 }
