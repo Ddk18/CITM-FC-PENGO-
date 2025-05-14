@@ -21,6 +21,10 @@ AppStatus Player::Initialise()
 	int i;
 	const int n = PLAYER_FRAME_SIZE;
 
+
+
+
+
 	ResourceManager& data = ResourceManager::Instance();
 	if (data.LoadTexture(Resource::IMG_PLAYER, "images/pinguinos/pinguino 1.png") != AppStatus::OK)
 	{
@@ -76,7 +80,6 @@ AppStatus Player::Initialise()
 
 		
 	sprite->SetAnimation((int)PlayerAnim::IDLE_DOWN);
-
 
 	return AppStatus::OK;
 }
@@ -252,9 +255,40 @@ void Player::ChangeAnimDown()
 	}
 }
 
+void Player::UpdatePush(float dt) {
+	pushProgress += pushSpeed * dt;
+	float totalDistance = Vector2Length(Vector2Subtract(pushingEnd, pushingStart));
+
+	if (pushProgress >= totalDistance) {
+		pos = { (int)pushingEnd.x, (int)pushingEnd.y };
+		isPushingBlock = false;
+		state = State::IDLE;
+		return;
+	}
+
+	float t = pushProgress / totalDistance;
+	Vector2 interpolated = Vector2Add(pushingStart, Vector2Scale(Vector2Subtract(pushingEnd, pushingStart), t));
+	pos = { (int)interpolated.x, (int)interpolated.y };
+}
+
+
+void Player::ChangeAnimByLook() {
+	switch (look) {
+	case Look::RIGHT: currentAnim = &animPushRight; break;
+	case Look::LEFT: currentAnim = &animPushLeft; break;
+	case Look::UP: currentAnim = &animPushUp; break;
+	case Look::DOWN: currentAnim = &animPushDown; break;
+	}
+}
 
 void Player::Update()
 {
+	float dt;
+	if (isPushingBlock) {
+		UpdatePush(dt);
+		return;
+	}
+
 	//Player doesn't use the "Entity::Update() { pos += dir; }" default behaviour.
 	//Instead, uses an independent behaviour for each axis.
 	Move();
@@ -370,6 +404,50 @@ void Player::Move()
 		if (state != State::IDLE || !isIdleAnimation)
 			Stop();
 	}
+
+	// Empujar bloque si está en estado IDLE o WALKING y se presiona ESPACIO
+	if ((state == State::IDLE || state == State::WALKING) && IsKeyPressed(KEY_SPACE)) {
+		Point blockPos = pos;
+		if (look == Look::RIGHT) blockPos.x += width;
+		if (look == Look::LEFT)  blockPos.x -= TILE_SIZE;
+		if (look == Look::UP)    blockPos.y -= TILE_SIZE;
+		if (look == Look::DOWN)  blockPos.y += height;
+
+		int tileX = blockPos.x / TILE_SIZE;
+		int tileY = blockPos.y / TILE_SIZE;
+
+		Tile tile = map->GetTileIndex(tileX, tileY);
+		if (map->IsTileSolid(tile)) {
+			// Dirección del push
+			int dirX = 0, dirY = 0;
+			if (look == Look::RIGHT) dirX = 1;
+			else if (look == Look::LEFT) dirX = -1;
+			else if (look == Look::UP) dirY = -1;
+			else if (look == Look::DOWN) dirY = 1;
+
+			int destX = tileX;
+			int destY = tileY;
+			while (true) {
+				int nextX = destX + dirX;
+				int nextY = destY + dirY;
+				Tile nextTile = map->GetTileIndex(nextX, nextY);
+				if (map->IsTileSolid(nextTile) || nextTile != Tile::AIR) break;
+				destX = nextX;
+				destY = nextY;
+			}
+
+			// Eliminar y simular movimiento
+			map->SetTile(tileX, tileY, Tile::AIR);
+			state = State::PUSHING;
+			ChangeAnimByLook();  // Nuevo método que agregamos abajo
+			isPushingBlock = true;
+			pushingStart = { (float)(tileX * TILE_SIZE), (float)(tileY * TILE_SIZE) };
+			pushingEnd = { (float)(destX * TILE_SIZE), (float)(destY * TILE_SIZE) };
+			pushProgress = 0.0f;
+		}
+	}
+
+
 }
 
 

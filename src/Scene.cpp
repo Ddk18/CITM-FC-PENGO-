@@ -58,6 +58,8 @@ Scene::~Scene()
 }
 AppStatus Scene::Init()
 {
+
+
 	//Create player
 	player = new Player({ 0,0 }, State::IDLE, Look::RIGHT);
 	if (player == nullptr)

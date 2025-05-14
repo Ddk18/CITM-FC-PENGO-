@@ -66,6 +66,11 @@ public:
 	void AddKillScore(int numSnoBeesKilled);
 	int GetScore();
 
+	void UpdatePush(float dt);
+	void ChangeAnimByLook();
+	Animation* currentAnim = nullptr;
+	Animation animPushRight, animPushLeft, animPushUp, animPushDown;
+
 private:
 	
 	int score;
@@ -102,7 +107,13 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	
 
-	
+	bool isPushingBlock = false;
+	Vector2 pushingStart;
+	Vector2 pushingEnd;
+
+	float pushSpeed = 200.0f; // pixeles por segundo
+	float pushProgress = 0.0f;
+
 
 
 };
