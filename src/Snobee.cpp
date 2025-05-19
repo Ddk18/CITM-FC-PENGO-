@@ -55,6 +55,7 @@ AppStatus SNOBEE::Initialise(const Point& pos, EnemyType type, const AABB& area,
 	sprite->AddKeyFrame((int)SNOBEEAnim::ATTACK_LEFT, { 0, 3*n, -n, n });
 	sprite->AddKeyFrame((int)SNOBEEAnim::ATTACK_LEFT, { n, 3*n, -n, n });
 
+
 	this->look = look;
 	if(look == Look::LEFT)        sprite->SetAnimation((int)SNOBEEAnim::IDLE_LEFT);
 	else if (look == Look::RIGHT) sprite->SetAnimation((int)SNOBEEAnim::IDLE_RIGHT);

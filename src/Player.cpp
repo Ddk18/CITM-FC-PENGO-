@@ -260,15 +260,30 @@ void Player::UpdatePush(float dt) {
 	float totalDistance = Vector2Length(Vector2Subtract(pushingEnd, pushingStart));
 
 	if (pushProgress >= totalDistance) {
-		pos = { (int)pushingEnd.x, (int)pushingEnd.y };
+		// El bloque ha llegado a su destino
+		int endX = (int)(pushingEnd.x / TILE_SIZE);
+		int endY = (int)(pushingEnd.y / TILE_SIZE);
+
+		// Si el bloque final choca con otro, lo destruimos
+		Tile endTile = map->GetTileIndex(endX, endY);
+		if (!map->IsTileSolid(endTile)) {
+			map->SetTile(endX, endY, Tile::BLOCK_BLUE);  // O el tipo original de bloque
+		}
+		else {
+			// No colocamos nada, simplemente desaparece
+		}
+
 		isPushingBlock = false;
 		state = State::IDLE;
 		return;
 	}
 
+	// Dibujar el bloque empujado moviéndose (efecto visual temporal)
 	float t = pushProgress / totalDistance;
 	Vector2 interpolated = Vector2Add(pushingStart, Vector2Scale(Vector2Subtract(pushingEnd, pushingStart), t));
-	pos = { (int)interpolated.x, (int)interpolated.y };
+
+	// Dibujo temporal del bloque en movimiento
+	DrawRectangle((int)interpolated.x, (int)interpolated.y, TILE_SIZE, TILE_SIZE, BLUE);
 }
 
 
@@ -283,14 +298,12 @@ void Player::ChangeAnimByLook() {
 
 void Player::Update()
 {
-	float dt;
+	float dt = GetFrameTime();
 	if (isPushingBlock) {
 		UpdatePush(dt);
 		return;
 	}
 
-	//Player doesn't use the "Entity::Update() { pos += dir; }" default behaviour.
-	//Instead, uses an independent behaviour for each axis.
 	Move();
 	
 	
@@ -408,6 +421,7 @@ void Player::Move()
 	// Empujar bloque si está en estado IDLE o WALKING y se presiona ESPACIO
 	if ((state == State::IDLE || state == State::WALKING) && IsKeyPressed(KEY_SPACE)) {
 		Point blockPos = pos;
+
 		if (look == Look::RIGHT) blockPos.x += width;
 		if (look == Look::LEFT)  blockPos.x -= TILE_SIZE;
 		if (look == Look::UP)    blockPos.y -= TILE_SIZE;
@@ -486,7 +500,7 @@ void Player::AddScoreForAction(ScoreAction action)
 	switch (action)
 	{
 	case KILL_1_SNOWBEE:
-		score += 400;
+		IncrScore(400);
 		break;
 	case KILL_2_SNOWBEES:
 		score += 1600;
