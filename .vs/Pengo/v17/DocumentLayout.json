@@ -7,8 +7,40 @@
       "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\AABB.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Point.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Point.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Snobee.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -19,32 +51,8 @@
       "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Snobee.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Point.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Point.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -58,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
@@ -68,14 +76,41 @@
               "RelativeDocumentMoniker": "src\\TileMap.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.cpp",
               "RelativeToolTip": "src\\TileMap.cpp",
-              "ViewState": "AQIAAJ0AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAHEBAAAAAAAAAAAAAI4BAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-24T08:06:32.023Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "AABB.h",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.h",
+              "RelativeDocumentMoniker": "src\\AABB.h",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.h",
+              "RelativeToolTip": "src\\AABB.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T07:27:24.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TileMap.h",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.h",
+              "RelativeDocumentMoniker": "src\\TileMap.h",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.h",
+              "RelativeToolTip": "src\\TileMap.h",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAC8AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T07:09:00.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Snobee.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Snobee.h",
               "RelativeDocumentMoniker": "src\\Snobee.h",
@@ -83,12 +118,11 @@
               "RelativeToolTip": "src\\Snobee.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-19T06:19:19.625Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T06:19:19.625Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Snobee.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Snobee.cpp",
               "RelativeDocumentMoniker": "src\\Snobee.cpp",
@@ -96,12 +130,11 @@
               "RelativeToolTip": "src\\Snobee.cpp",
               "ViewState": "AQIAACEAAAAAAAAAAAAAADkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-19T06:19:00.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T06:19:00.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Point.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Point.h",
               "RelativeDocumentMoniker": "src\\Point.h",
@@ -109,43 +142,44 @@
               "RelativeToolTip": "src\\Point.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-12T06:37:34.767Z"
+              "WhenOpened": "2025-05-12T06:37:34.767Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Scene.cpp",
               "RelativeDocumentMoniker": "src\\Scene.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Scene.cpp",
               "RelativeToolTip": "src\\Scene.cpp",
-              "ViewState": "AQIAAKgAAAAAAAAAAAAAAHABAAAAAAAA",
+              "ViewState": "AQIAAPcAAAAAAAAAAAAewBYBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-28T07:27:40.068Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "Sprite.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.cpp",
               "RelativeDocumentMoniker": "src\\Sprite.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.cpp",
               "RelativeToolTip": "src\\Sprite.cpp",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAAAIMAAAAAAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAAAIMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-04T07:04:32.053Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Sprite.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.h",
               "RelativeDocumentMoniker": "src\\Sprite.h",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.h",
               "RelativeToolTip": "src\\Sprite.h",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAAC4AAAAZAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-04-04T07:03:03.292Z",
               "EditorCaption": ""
@@ -158,27 +192,27 @@
               "RelativeDocumentMoniker": "src\\Player.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.cpp",
               "RelativeToolTip": "src\\Player.cpp",
-              "ViewState": "AQIAAPUAAAAAAAAAAAAuwB8BAAAAAAAA",
+              "ViewState": "AQIAAJ0BAAAAAAAAAAAewLABAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-24T08:01:05.84Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h",
               "RelativeDocumentMoniker": "src\\Player.h",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h",
               "RelativeToolTip": "src\\Player.h",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAEIAAAAQAAAA",
+              "ViewState": "AQIAADgAAAAAAAAAAAAewEsAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-24T08:00:28.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h",
               "RelativeDocumentMoniker": "src\\Game.h",
@@ -186,25 +220,24 @@
               "RelativeToolTip": "src\\Game.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-17T07:03:08.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:03:08.807Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp",
               "RelativeDocumentMoniker": "src\\Game.cpp",
               "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp",
               "RelativeToolTip": "src\\Game.cpp",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAAAA4AAAANAAAA",
+              "ViewState": "AQIAAKkAAAAAAAAAAAAewMUAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-17T07:03:10.337Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\main.cpp",
               "RelativeDocumentMoniker": "src\\main.cpp",

@@ -46,6 +46,9 @@ enum class Tile {
 class TileMap
 {
 public:
+	const Texture2D& GetTileset() const;
+	Rectangle GetTileRect(Tile tile) const;
+
 	TileMap();
 	~TileMap();
 

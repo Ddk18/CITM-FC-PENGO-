@@ -71,6 +71,13 @@ public:
 	Animation* currentAnim = nullptr;
 	Animation animPushRight, animPushLeft, animPushUp, animPushDown;
 
+	Tile pushedTileType = Tile::AIR;
+	Point pushedTileCoord;
+	Vector2 movingBlockPos = { 0.0f, 0.0f };
+	bool hasMovingBlock = false;
+	void RenderMovingBlock() const;
+
+
 private:
 	
 	int score;
@@ -108,8 +115,9 @@ private:
 	
 
 	bool isPushingBlock = false;
-	Vector2 pushingStart;
-	Vector2 pushingEnd;
+	Vector2 pushingStart = { 0.0f, 0.0f };
+	Vector2 pushingEnd = { 0.0f, 0.0f };
+
 
 	float pushSpeed = 200.0f; // pixeles por segundo
 	float pushProgress = 0.0f;

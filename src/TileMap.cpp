@@ -383,6 +383,20 @@ void TileMap::Render()
 		}
 	}
 }
+const Texture2D& TileMap::GetTileset() const {
+	return *img_tiles;
+}
+
+Rectangle TileMap::GetTileRect(Tile tile) const {
+	auto it = dict_rect.find((int)tile);
+	if (it != dict_rect.end()) {
+		return it->second;
+	}
+	else {
+		return Rectangle{ 0, 0, TILE_SIZE, TILE_SIZE }; // Valor por defecto
+	}
+}
+
 void TileMap::Release()
 {
 	ResourceManager& data = ResourceManager::Instance(); 
