@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\AABB.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{24384826-9205-4524-9D82-7FE069C28BD1}|Pengo.vcxproj|solutionrelative:src\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -66,11 +70,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "TileMap.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.cpp",
               "RelativeDocumentMoniker": "src\\TileMap.cpp",
@@ -79,12 +83,24 @@
               "ViewState": "AQIAAHEBAAAAAAAAAAAAAI4BAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-24T08:06:32.023Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AABB.cpp",
+              "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.cpp",
+              "RelativeDocumentMoniker": "src\\AABB.cpp",
+              "ToolTip": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.cpp",
+              "RelativeToolTip": "src\\AABB.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-19T07:42:02.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AABB.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\AABB.h",
               "RelativeDocumentMoniker": "src\\AABB.h",
@@ -92,12 +108,11 @@
               "RelativeToolTip": "src\\AABB.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-19T07:27:24.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T07:27:24.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "TileMap.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\TileMap.h",
               "RelativeDocumentMoniker": "src\\TileMap.h",
@@ -105,12 +120,11 @@
               "RelativeToolTip": "src\\TileMap.h",
               "ViewState": "AQIAADYAAAAAAAAAAAAAAC8AAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-19T07:09:00.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T07:09:00.763Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Snobee.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Snobee.h",
               "RelativeDocumentMoniker": "src\\Snobee.h",
@@ -122,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Snobee.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Snobee.cpp",
               "RelativeDocumentMoniker": "src\\Snobee.cpp",
@@ -134,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Point.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Point.h",
               "RelativeDocumentMoniker": "src\\Point.h",
@@ -142,12 +156,11 @@
               "RelativeToolTip": "src\\Point.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-12T06:37:34.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-12T06:37:34.767Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Scene.cpp",
               "RelativeDocumentMoniker": "src\\Scene.cpp",
@@ -155,12 +168,11 @@
               "RelativeToolTip": "src\\Scene.cpp",
               "ViewState": "AQIAAPcAAAAAAAAAAAAewBYBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-28T07:27:40.068Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T07:27:40.068Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Sprite.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.cpp",
               "RelativeDocumentMoniker": "src\\Sprite.cpp",
@@ -168,12 +180,11 @@
               "RelativeToolTip": "src\\Sprite.cpp",
               "ViewState": "AQIAAEYAAAAAAAAAAAAAAIMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-04T07:04:32.053Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T07:04:32.053Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Sprite.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Sprite.h",
               "RelativeDocumentMoniker": "src\\Sprite.h",
@@ -181,12 +192,11 @@
               "RelativeToolTip": "src\\Sprite.h",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-04T07:03:03.292Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T07:03:03.292Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.cpp",
               "RelativeDocumentMoniker": "src\\Player.cpp",
@@ -199,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Player.h",
               "RelativeDocumentMoniker": "src\\Player.h",
@@ -207,12 +217,11 @@
               "RelativeToolTip": "src\\Player.h",
               "ViewState": "AQIAADgAAAAAAAAAAAAewEsAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-24T08:00:28.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-24T08:00:28.748Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.h",
               "RelativeDocumentMoniker": "src\\Game.h",
@@ -224,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\Game.cpp",
               "RelativeDocumentMoniker": "src\\Game.cpp",
@@ -232,12 +241,11 @@
               "RelativeToolTip": "src\\Game.cpp",
               "ViewState": "AQIAAKkAAAAAAAAAAAAewMUAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-17T07:03:10.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T07:03:10.337Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\enzoam\\Documents\\GitHub\\CITM-FC-PENGO-\\src\\main.cpp",
               "RelativeDocumentMoniker": "src\\main.cpp",
