@@ -270,7 +270,7 @@ void Player::UpdatePush(float dt) {
 
 		if (!map->IsTileSolid(finalTile)) {
 			map->SetTile(endX, endY, pushedTileType);
-		}
+ 		}
 
 		hasMovingBlock = false;
 		isPushingBlock = false;

@@ -31,7 +31,7 @@ enum ScoreAction {
 enum class State { IDLE, WALKING, PUSHING, DEAD, WIN };
 
 //Rendering states
-enum class PlayerAnim {
+enum PlayerAnim {
 	IDLE_LEFT, IDLE_RIGHT, IDLE_UP, IDLE_DOWN,
 	WALKING_LEFT, WALKING_RIGHT,WALKING_DOWN, WALKING_UP,
 	PUSHING_LEFT, PUSHING_RIGHT, PUSHING_DOWN, PUSHING_UP,
@@ -62,7 +62,9 @@ public:
 
 	void InitScore();
 	void IncrScore(int n);
-	void AddScoreForAction(ScoreAction action);
+	void AddScoreForAction(enum ScoreAction action);
+
+
 	void AddKillScore(int numSnoBeesKilled);
 	int GetScore();
 

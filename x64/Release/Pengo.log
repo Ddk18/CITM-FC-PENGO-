@@ -1,15 +1,7 @@
-﻿  Enemy.cpp
-  EnemyManager.cpp
-  Game.cpp
-  Player.cpp
-  Scene.cpp
-  ShotManager.cpp
-  Snobee.cpp
-  TileMap.cpp
-  main.cpp
+﻿  TileMap.cpp
   Generando código
-C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\src\Player.cpp(288): error C4700: se utilizó la variable local 'dt' sin inicializar
-  69 of 998 functions ( 6.9%) were compiled, the rest were copied from previous compilation.
-    9 functions were new in current compilation
-    28 functions had inline decision re-evaluated but remain unchanged
-LINK : fatal error LNK1257: error de generación de código
+  21 of 1002 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    9 functions had inline decision re-evaluated but remain unchanged
+  Generación de código finalizada
+  Pengo.vcxproj -> C:\Users\Enzo\OneDrive\Dokumente\GitHub\CITM-FC-PENGO-\x64\Release\Pengo.exe

@@ -396,3 +396,10 @@ void TileMap::Release()
 	dict_rect.clear();
 }
 
+const Texture2D& TileMap::GetTileset() const {
+	return *img_tiles;
+}
+
+Rectangle TileMap::GetTileRect(Tile tile) const {
+	return dict_rect.at(static_cast<int>(tile));
+}
