@@ -31,41 +31,44 @@ void TileMap::InitTileDictionary()
 {
 	const int n = TILE_SIZE;
 
-	dict_rect[(int)Tile::BLOCK_SQUARE1_TL] = { 3*n,  0, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE1_TR] = { n,  0, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE1_BL] = { 0, n, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE1_BR] = { n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE2_TL] = { 2 * n,  0, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE2_TR] = { 3 * n,  0, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE2_BL] = { 2 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_SQUARE2_BR] = { 3 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_VERT2_T] = { 4 * n,  0, n, n };
-	dict_rect[(int)Tile::BLOCK_VERT2_B] = { 4 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_HORIZ2_L] = { 5 * n, 0, n, n };
-	dict_rect[(int)Tile::BLOCK_HORIZ2_R] = { 6 * n, 0, n, n };
-	dict_rect[(int)Tile::BLOCK_BLUE] = { 5*n, 0, n, n };
-	dict_rect[(int)Tile::BLOCK_HORIZ3_L] = { 5 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_HORIZ3_M] = { 6 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_HORIZ3_R] = { 7 * n, n, n, n };
-	dict_rect[(int)Tile::BLOCK_BEAM_L] = { 0, 2 * n, n, n };
-	dict_rect[(int)Tile::BLOCK_BEAM_R] = { n, 2 * n, n, n };
+	// Primera fila
+	dict_rect[(int)Tile::BLOCK_SQUARE1_TL] = { 0 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE1_TR] = { 1 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE1_BL] = { 2 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE1_BR] = { 3 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE2_TL] = { 4 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE2_TR] = { 5 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE2_BL] = { 6 * n, 0 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_SQUARE2_BR] = { 7 * n, 0 * n, n, n };
 
+	// Segona fila
+	dict_rect[(int)Tile::BLOCK_VERT2_T] = { 0 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_VERT2_B] = { 1 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_HORIZ2_L] = { 2 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_HORIZ2_R] = { 3 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_BLUE] = { 4 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_HORIZ3_L] = { 5 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_HORIZ3_M] = { 6 * n, 1 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_HORIZ3_R] = { 7 * n, 1 * n, n, n };
+
+	// Tercera fila
+	dict_rect[(int)Tile::BLOCK_BEAM_L] = { 0 * n, 2 * n, n, n };
+	dict_rect[(int)Tile::BLOCK_BEAM_R] = { 1 * n, 2 * n, n, n };
 	dict_rect[(int)Tile::LADDER_L] = { 2 * n, 2 * n, n, n };
 	dict_rect[(int)Tile::LADDER_R] = { 3 * n, 2 * n, n, n };
 	dict_rect[(int)Tile::LADDER_TOP_L] = { 4 * n, 2 * n, n, n };
 	dict_rect[(int)Tile::LADDER_TOP_R] = { 5 * n, 2 * n, n, n };
-
 	dict_rect[(int)Tile::LOCK_RED] = { 6 * n, 2 * n, n, n };
 	dict_rect[(int)Tile::LOCK_YELLOW] = { 7 * n, 2 * n, n, n };
 
-	dict_rect[(int)Tile::LASER_L] = { 0, 6 * n, n, n };
-	dict_rect[(int)Tile::LASER_R] = { 4 * n, 6 * n, n, n };
-	
-	dict_rect[(int)Tile::LASER_FRAME0] = { 1 * n, 6 * n, n, n };
-	dict_rect[(int)Tile::LASER_FRAME1] = { 2 * n, 6 * n, n, n };
-	dict_rect[(int)Tile::LASER_FRAME2] = { 3 * n, 6 * n, n, n };
-
+	// Quarta fila
+	dict_rect[(int)Tile::LASER_L] = { 0 * n, 3 * n, n, n };
+	dict_rect[(int)Tile::LASER_R] = { 1 * n, 3 * n, n, n };
+	dict_rect[(int)Tile::LASER_FRAME0] = { 2 * n, 3 * n, n, n };
+	dict_rect[(int)Tile::LASER_FRAME1] = { 3 * n, 3 * n, n, n };
+	dict_rect[(int)Tile::LASER_FRAME2] = { 4 * n, 3 * n, n, n };
 }
+
 AppStatus TileMap::Initialise()
 {
 	ResourceManager& data = ResourceManager::Instance();
@@ -93,14 +96,14 @@ AppStatus TileMap::Initialise()
 }
 AppStatus TileMap::Load(int data[], int w, int h)
 {
-	size = w*h;
+	size = w * h;
 	width = w;
 	height = h;
 
 	if (map != nullptr)	delete[] map;
 
 	map = new Tile[size];
-	if (map == nullptr)	
+	if (map == nullptr)
 	{
 		LOG("Failed to allocate memory for tile map");
 		return AppStatus::ERROR;
@@ -116,7 +119,7 @@ void TileMap::ClearObjectEntityPositions()
 	for (i = 0; i < size; ++i)
 	{
 		tile = map[i];
-		if(IsTileEntity(tile) || IsTileObject(tile) || tile == Tile::EMPTY)
+		if (IsTileEntity(tile) || IsTileObject(tile) || tile == Tile::EMPTY)
 			map[i] = Tile::AIR;
 	}
 }
@@ -126,11 +129,11 @@ void TileMap::Update()
 }
 Tile TileMap::GetTileIndex(int x, int y) const
 {
-	int idx = x + y*width;
-	if(idx < 0 || idx >= size)
+	int idx = x + y * width;
+	if (idx < 0 || idx >= size)
 	{
 		LOG("Error: Index out of bounds. Tile map dimensions: %dx%d. Given index: (%d, %d)", width, height, x, y)
-		return Tile::AIR;
+			return Tile::AIR;
 	}
 	return map[x + y * width];
 }
@@ -176,7 +179,7 @@ bool TileMap::TestCollisionWallDown(const AABB& box) const
 	return CollisionY(box.pos + Point(0, box.height - 1), box.width);
 }
 
-bool TileMap::TestCollisionGround(const AABB& box, int *py) const
+bool TileMap::TestCollisionGround(const AABB& box, int* py) const
 {
 	Point p(box.pos.x, *py);	//control point
 	int tile_y;
@@ -202,7 +205,7 @@ bool TileMap::CollisionX(const Point& p, int distance) const
 	x = p.x / TILE_SIZE;
 	y0 = p.y / TILE_SIZE;
 	y1 = (p.y + distance - 1) / TILE_SIZE;
-	
+
 	//Iterate over the tiles within the vertical range
 	for (y = y0; y <= y1; ++y)
 	{
@@ -238,11 +241,11 @@ bool TileMap::TestOnLadder(const AABB& box, int* px) const
 	int left, right, bottom;
 	int tx1, tx2, ty;
 	Tile tile1, tile2;
-	
+
 	//Control points
 	left = box.pos.x;
-	right = box.pos.x + box.width-1;
-	bottom = box.pos.y + box.height-1;
+	right = box.pos.x + box.width - 1;
+	bottom = box.pos.y + box.height - 1;
 
 	//Calculate the tile coordinates
 	tx1 = left / TILE_SIZE;
@@ -254,7 +257,7 @@ bool TileMap::TestOnLadder(const AABB& box, int* px) const
 	tile2 = GetTileIndex(tx2, ty);
 	if (IsTileLadder(tile1) && IsTileLadder(tile2))
 	{
-		*px = GetLadderCenterPos(left, bottom) - box.width/2;
+		*px = GetLadderCenterPos(left, bottom) - box.width / 2;
 		return true;
 	}
 	return false;
@@ -288,7 +291,7 @@ bool TileMap::TestOnLadderTop(const AABB& box, int* px) const
 int TileMap::GetLadderCenterPos(int pixel_x, int pixel_y) const
 {
 	int tx, ty;
-	
+
 	tx = pixel_x / TILE_SIZE;
 	ty = pixel_y / TILE_SIZE;
 	Tile tile = GetTileIndex(tx, ty);
@@ -306,7 +309,7 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 	AABB box;
 	int column, x, y, y0, y1;
 	bool collision;
-	
+
 	box.pos.y = hitbox.pos.y;
 	box.height = hitbox.height;
 
@@ -329,9 +332,9 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 				break;
 			}
 		}
-		if(!collision) x--;
+		if (!collision) x--;
 	}
-	box.pos.x = (x+1)*TILE_SIZE;
+	box.pos.x = (x + 1) * TILE_SIZE;
 
 	//Compute right tile index
 	collision = false;
@@ -350,8 +353,8 @@ AABB TileMap::GetSweptAreaX(const AABB& hitbox) const
 		}
 		if (!collision) x++;
 	}
-	box.width = x*TILE_SIZE - box.pos.x;
-	
+	box.width = x * TILE_SIZE - box.pos.x;
+
 	return box;
 }
 void TileMap::Render()
@@ -383,26 +386,13 @@ void TileMap::Render()
 		}
 	}
 }
-const Texture2D& TileMap::GetTileset() const {
-	return *img_tiles;
-}
-
-Rectangle TileMap::GetTileRect(Tile tile) const {
-	auto it = dict_rect.find((int)tile);
-	if (it != dict_rect.end()) {
-		return it->second;
-	}
-	else {
-		return Rectangle{ 0, 0, TILE_SIZE, TILE_SIZE }; // Valor por defecto
-	}
-}
-
 void TileMap::Release()
 {
-	ResourceManager& data = ResourceManager::Instance(); 
+	ResourceManager& data = ResourceManager::Instance();
 	data.ReleaseTexture(Resource::IMG_TILES);
 
 	laser->Release();
 
 	dict_rect.clear();
 }
+
