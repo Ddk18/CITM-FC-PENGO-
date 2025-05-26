@@ -1,4 +1,4 @@
-
+Ôªø
 #include "Player.h"
 #include "Sprite.h"
 #include "TileMap.h"
@@ -20,6 +20,10 @@ AppStatus Player::Initialise()
 {
 	int i;
 	const int n = PLAYER_FRAME_SIZE;
+
+
+
+
 
 	ResourceManager& data = ResourceManager::Instance();
 	if (data.LoadTexture(Resource::IMG_PLAYER, "images/pinguinos/pinguino 1.png") != AppStatus::OK)
@@ -77,7 +81,6 @@ AppStatus Player::Initialise()
 		
 	sprite->SetAnimation((int)PlayerAnim::IDLE_DOWN);
 
-
 	return AppStatus::OK;
 }
 
@@ -122,11 +125,11 @@ void Player::FreezeAnimationFrame() {
 		originalAnimationDelays[currentAnim] = sprite->GetAnimationDelay(currentAnim);
 	}
 
-	// Establecer un delay muy alto para "congelar" la animaciÛn
+	// Establecer un delay muy alto para "congelar" la animaci√≥n
 	sprite->SetAnimationDelay(currentAnim, 20);
 }
 
-// FunciÛn para restaurar el delay original de la animaciÛn actual
+// Funci√≥n para restaurar el delay original de la animaci√≥n actual
 void Player::RestoreAnimationFrame() {
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	int currentAnim = sprite->GetAnimation();
@@ -137,7 +140,7 @@ void Player::RestoreAnimationFrame() {
 	}
 }
 
-// FunciÛn Stop que congela la animaciÛn sin cambiar a la animaciÛn idle
+// Funci√≥n Stop que congela la animaci√≥n sin cambiar a la animaci√≥n idle
 void Player::Stop()
 {
 	dir = { 0, 0 }; // Detener movimiento
@@ -154,18 +157,18 @@ void Player::Stop()
 		else if (look == Look::DOWN)
 			sprite->SetAnimation((int)PlayerAnim::IDLE_DOWN);
 
-		sprite->FreezeAnimationFrame(); // Detener animaciÛn
+		sprite->FreezeAnimationFrame(); // Detener animaci√≥n
 	}
 }
 
 
 
-// Ejemplo de funciÛn para reanudar el movimiento
+// Ejemplo de funci√≥n para reanudar el movimiento
 void Player::ResumeMovement() {
 	RestoreAnimationFrame();
-	// AquÌ puedes definir la animaciÛn de movimiento que corresponda, por ejemplo:
+	// Aqu√≠ puedes definir la animaci√≥n de movimiento que corresponda, por ejemplo:
 	SetAnimation((int)PlayerAnim::WALKING_RIGHT);
-	// Se deben actualizar posiciÛn, direcciÛn, etc.
+	// Se deben actualizar posici√≥n, direcci√≥n, etc.
 }
 
 
@@ -252,17 +255,60 @@ void Player::ChangeAnimDown()
 	}
 }
 
+void Player::UpdatePush(float dt) {
+	if (pushProgress == 0.0f) {
+		map->SetTile(pushedTileCoord.x, pushedTileCoord.y, Tile::AIR);  // ‚úÖ Eliminar del mapa
+	}
+
+	pushProgress += pushSpeed * dt;
+	float totalDistance = Vector2Length(Vector2Subtract(pushingEnd, pushingStart));
+
+	if (pushProgress >= totalDistance) {
+		int endX = (int)(pushingEnd.x / TILE_SIZE);
+		int endY = (int)(pushingEnd.y / TILE_SIZE);
+		Tile finalTile = map->GetTileIndex(endX, endY);
+
+		if (!map->IsTileSolid(finalTile)) {
+			map->SetTile(endX, endY, pushedTileType);
+ 		}
+
+		hasMovingBlock = false;
+		isPushingBlock = false;
+		state = State::IDLE;
+		return;
+	}
+
+	// Interpolamos la posici√≥n visual del bloque
+	float t = pushProgress / totalDistance;
+	movingBlockPos = Vector2Add(pushingStart, Vector2Scale(Vector2Subtract(pushingEnd, pushingStart), t));
+
+}
+
+
+void Player::ChangeAnimByLook() {
+	switch (look) {
+	case Look::RIGHT: currentAnim = &animPushRight; break;
+	case Look::LEFT: currentAnim = &animPushLeft; break;
+	case Look::UP: currentAnim = &animPushUp; break;
+	case Look::DOWN: currentAnim = &animPushDown; break;
+	}
+}
 
 void Player::Update()
 {
-	//Player doesn't use the "Entity::Update() { pos += dir; }" default behaviour.
-	//Instead, uses an independent behaviour for each axis.
+	float dt = GetFrameTime();
+	if (isPushingBlock) {
+		UpdatePush(dt);
+		return;
+	}
+
 	Move();
 	
 	
 
 	Sprite* sprite = dynamic_cast<Sprite*>(render);
 	sprite->Update();
+
 }
 
 void Player::Move()
@@ -353,11 +399,11 @@ void Player::Move()
 	// Handle the case when no movement keys are pressed
 	if (!IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT) && !IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN))
 	{
-		// Llamar a Stop solo si no estamos ya en estado IDLE o si la animaciÛn actual no es la correcta
+		// Llamar a Stop solo si no estamos ya en estado IDLE o si la animaci√≥n actual no es la correcta
 		Sprite* sprite = dynamic_cast<Sprite*>(render);
 		bool isIdleAnimation = false;
 
-		// Verificar si ya estamos en una animaciÛn IDLE correcta
+		// Verificar si ya estamos en una animaci√≥n IDLE correcta
 		if (look == Look::LEFT && sprite->GetAnimation() == (int)PlayerAnim::IDLE_LEFT)
 			isIdleAnimation = true;
 		else if (look == Look::RIGHT && sprite->GetAnimation() == (int)PlayerAnim::IDLE_RIGHT)
@@ -370,7 +416,60 @@ void Player::Move()
 		if (state != State::IDLE || !isIdleAnimation)
 			Stop();
 	}
+
+	// Empujar bloque si est√° en estado IDLE o WALKING y se presiona ESPACIO
+	if ((state == State::IDLE || state == State::WALKING) && IsKeyPressed(KEY_SPACE)) {
+		Point blockPos = pos;
+
+		if (look == Look::RIGHT) blockPos.x += width;
+		if (look == Look::LEFT)  blockPos.x -= TILE_SIZE;
+		if (look == Look::UP)    blockPos.y -= TILE_SIZE;
+		if (look == Look::DOWN)  blockPos.y += height;
+
+		int tileX = blockPos.x / TILE_SIZE;
+		int tileY = blockPos.y / TILE_SIZE;
+
+		Tile tile = map->GetTileIndex(tileX, tileY);
+		if (map->IsTileSolid(tile)) {
+			// Direcci√≥n del push
+			int dirX = 0, dirY = 0;
+			if (look == Look::RIGHT) dirX = 1;
+			else if (look == Look::LEFT) dirX = -1;
+			else if (look == Look::UP) dirY = -1;
+			else if (look == Look::DOWN) dirY = 1;
+
+			int destX = tileX;
+			int destY = tileY;
+			while (true) {
+				int nextX = destX + dirX;
+				int nextY = destY + dirY;
+				Tile nextTile = map->GetTileIndex(nextX, nextY);
+				if (map->IsTileSolid(nextTile) || nextTile != Tile::AIR) break;
+				destX = nextX;
+				destY = nextY;
+			}
+
+			// NO eliminar todav√≠a, se eliminar√° cuando empiece UpdatePush
+			pushedTileType = tile; // Guarda el tipo original del bloque para renderizado
+			pushedTileCoord = { tileX, tileY };
+
+			state = State::PUSHING;
+			ChangeAnimByLook();  // Nuevo m√©todo que agregamos abajo
+			isPushingBlock = true;
+			pushingStart = { (float)(tileX * TILE_SIZE), (float)(tileY * TILE_SIZE) };
+			pushingEnd = { (float)(destX * TILE_SIZE), (float)(destY * TILE_SIZE) };
+			pushProgress = 0.0f;
+			movingBlockPos = pushingStart;
+			hasMovingBlock = true;
+			pushedTileCoord = { tileX, tileY };
+			pushedTileType = tile; 
+
+		}
+	}
+
+
 }
+
 
 
 void Player::DrawDebug(const Color& col) const
@@ -408,7 +507,7 @@ void Player::AddScoreForAction(ScoreAction action)
 	switch (action)
 	{
 	case KILL_1_SNOWBEE:
-		score += 400;
+		IncrScore(400);
 		break;
 	case KILL_2_SNOWBEES:
 		score += 1600;
@@ -452,10 +551,17 @@ void Player::AddKillScore(int numSnoBeesKilled)
 		scoreToAdd = base * 4 * 2; // 3200
 		break;
 	default:
-		// Si per error arriba un valor mÈs gran, seguim amb un c‡lcul progressiu
+		// Si per error arriba un valor m√©s gran, seguim amb un c√†lcul progressiu
 		scoreToAdd = base * numSnoBeesKilled * numSnoBeesKilled;
 		break;
 	}
 
 	score += scoreToAdd;
+}
+
+void Player::RenderMovingBlock() const {
+	if (hasMovingBlock) {
+		Rectangle srcRect = map->GetTileRect(pushedTileType);
+		DrawTextureRec(map->GetTileset(), srcRect, movingBlockPos, WHITE);
+	}
 }

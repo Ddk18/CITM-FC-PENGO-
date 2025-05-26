@@ -58,6 +58,8 @@ Scene::~Scene()
 }
 AppStatus Scene::Init()
 {
+
+
 	//Create player
 	player = new Player({ 0,0 }, State::IDLE, Look::RIGHT);
 	if (player == nullptr)
@@ -273,6 +275,8 @@ void Scene::Render()
 		enemies->Draw();
 		player->Draw();
 		shots->Draw();
+		player->RenderMovingBlock();
+
 	}
 	if (debug == DebugMode::SPRITES_AND_HITBOXES || debug == DebugMode::ONLY_HITBOXES)
 	{
@@ -281,6 +285,7 @@ void Scene::Render()
 		player->DrawDebug(GREEN);
 		shots->DrawDebug(GRAY);
 	}
+	
 
 	EndMode2D();
 

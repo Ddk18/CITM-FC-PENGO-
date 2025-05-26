@@ -46,6 +46,9 @@ enum class Tile {
 class TileMap
 {
 public:
+	const Texture2D& GetTileset() const;
+	Rectangle GetTileRect(Tile tile) const;
+
 	TileMap();
 	~TileMap();
 
@@ -84,11 +87,14 @@ public:
 	//Given a hitbox, computes the maximum swept box model along the X-axis without solid tiles
 	AABB GetSweptAreaX(const AABB& hitboxbox) const;
 
+	void SetTile(int x, int y, Tile tile) { map[y * width + x] = tile; }
+	Tile GetTileIndex(int x, int y) const;
+	bool IsTileSolid(Tile tile) const;
+
 private:
 	void InitTileDictionary();
 
-	Tile GetTileIndex(int x, int y) const;
-	bool IsTileSolid(Tile tile) const;
+	
 	bool IsTileLadderTop(Tile tile) const;
 	bool IsTileLadder(Tile tile) const;
 	bool IsTileLaser(Tile tile) const;

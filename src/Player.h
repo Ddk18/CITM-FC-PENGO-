@@ -31,7 +31,7 @@ enum ScoreAction {
 enum class State { IDLE, WALKING, PUSHING, DEAD, WIN };
 
 //Rendering states
-enum class PlayerAnim {
+enum PlayerAnim {
 	IDLE_LEFT, IDLE_RIGHT, IDLE_UP, IDLE_DOWN,
 	WALKING_LEFT, WALKING_RIGHT,WALKING_DOWN, WALKING_UP,
 	PUSHING_LEFT, PUSHING_RIGHT, PUSHING_DOWN, PUSHING_UP,
@@ -62,9 +62,23 @@ public:
 
 	void InitScore();
 	void IncrScore(int n);
-	void AddScoreForAction(ScoreAction action);
+	void AddScoreForAction(enum ScoreAction action);
+
+
 	void AddKillScore(int numSnoBeesKilled);
 	int GetScore();
+
+	void UpdatePush(float dt);
+	void ChangeAnimByLook();
+	Animation* currentAnim = nullptr;
+	Animation animPushRight, animPushLeft, animPushUp, animPushDown;
+
+	Tile pushedTileType = Tile::AIR;
+	Point pushedTileCoord;
+	Vector2 movingBlockPos = { 0.0f, 0.0f };
+	bool hasMovingBlock = false;
+	void RenderMovingBlock() const;
+
 
 private:
 	
@@ -102,7 +116,14 @@ private:
 	//This class does not own the object, it only holds a reference to it
 	
 
-	
+	bool isPushingBlock = false;
+	Vector2 pushingStart = { 0.0f, 0.0f };
+	Vector2 pushingEnd = { 0.0f, 0.0f };
+
+
+	float pushSpeed = 200.0f; // pixeles por segundo
+	float pushProgress = 0.0f;
+
 
 
 };

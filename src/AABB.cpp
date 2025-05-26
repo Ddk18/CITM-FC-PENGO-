@@ -12,6 +12,7 @@ bool AABB::TestAABB(const AABB& box) const
     return !(pos.x + width < box.pos.x || box.pos.x + box.width < pos.x ||
         pos.y + height < box.pos.y || box.pos.y + box.height < pos.y);
 }
+
 bool AABB::TestPoint(const Point& q) const
 {
     return (q.x >= pos.x && q.x <= pos.x + width &&

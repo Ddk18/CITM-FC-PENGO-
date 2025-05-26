@@ -1,15 +1,15 @@
-#pragma once
+﻿#pragma once
 
 #include "RenderComponent.h"
 #include <vector>
 #include <unordered_map>
 enum class AnimMode { AUTOMATIC, MANUAL };
 
-struct Animation
-{
-    int delay;
+struct Animation {
+    int delay = 0;  // ✅ Inicializado
     std::vector<Rectangle> frames;
 };
+
 
 class Sprite : public RenderComponent
 {
